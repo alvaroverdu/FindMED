@@ -3,8 +3,9 @@ Ruta base: /api/usuarios
 */
 
 const { Router } = require('express');
-const {getUsuarios,crearUsuarios} = require('../controllers/usuarios') 
+const {getUsuarios,crearUsuarios,actualizarUsuarios,borrarUsuarios} = require('../controllers/usuarios') 
 const { check } = require('express-validator');
+const { validarCampos } = require('../middleware/validar-campos');
 
 
 const router = Router();
@@ -12,10 +13,23 @@ const router = Router();
 router.get('/' , getUsuarios);
 
 router.post('/', [
-    check('nombre','El argumento nombre es obligatorio').notEmpty(),
-    check('password','El argumento password es obligatorio').notEmpty(),
-    check('email','El argumento email es obligatorio').notEmpty()
+    check('nombre', 'El argumento nombre es obligatorio').not().isEmpty(),
+    check('email', 'El argumento email es obligatorio').not().isEmpty(),
+    check('password', 'El argumento password es obligatorio').not().isEmpty(),
+    validarCampos
+], crearUsuarios);
 
-    ], crearUsuarios);
+router.put('/:id', [
+    check('nombre', 'El argumento nombre es obligatorio').not().isEmpty(),
+    check('email', 'El argumento email es obligatorio').not().isEmpty(),
+    check('password', 'El argumento password es obligatorio').not().isEmpty(),
+    check('id', 'El identificador no es válido').isMongoId(),
+    validarCampos
+], actualizarUsuarios);
+
+router.delete('/:id', [
+    check('id', 'El identificador no es válido').isMongoId(),
+    validarCampos
+], borrarUsuarios);
 
 module.exports = router;

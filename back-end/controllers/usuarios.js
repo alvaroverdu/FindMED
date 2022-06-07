@@ -16,23 +16,54 @@ const getUsuarios = async (req,res)=> {
 
 const crearUsuarios = async (req,res)=> {
 
-    const erroresVal = validationResult(req);
+    const {email, password} = req.body;
 
-    if(!erroresVal.isEmpty()){
+    try {
+
+        const existeEmail = await Usuario.findOne({email: email});
+
+        if(existeEmail){
+            return res.status(400).json({
+                ok: false,
+                msg: 'Email ya existe'
+            });
+        }
+
+        res.json({
+            ok: true,
+            msg: 'crearUsuarios'
+        });
+    
+
+    } catch (error){
+        console.log(error);
         return res.status(400).json({
             ok: false,
-            errores: erroresVal.mapped()
+            msg: 'Error creando usuario'
         });
     }
+   
+}
+
+const actualizarUsuarios = async (req,res)=> {
 
     res.json({
         ok: true,
-        msg: 'crearUsuarios'
+        msg: 'actualizarUsuarios'
+    });
+
+}
+
+const borrarUsuarios = async (req,res)=> {
+
+    res.json({
+        ok: true,
+        msg: 'borrarUsuarios'
     });
 
 }
 
 
 module.exports = {
-    getUsuarios,crearUsuarios
+    getUsuarios,crearUsuarios,actualizarUsuarios,borrarUsuarios
 }
