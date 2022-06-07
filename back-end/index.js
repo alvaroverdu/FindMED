@@ -3,6 +3,7 @@ Importación de módulos
 */
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 require('dotenv').config();
 const { dbConnection } = require ('./database/configdb');
 
@@ -13,15 +14,10 @@ dbConnection();
 
 app.use(cors());
 
+app.use('/api/usuarios', require('./routes/usuarios'));
+
 
 // Abrir la aplicacíon en el puerto 3000
 app.listen(process.env.PORT, () => {
     console.log('Servidor corriendo en el puerto ', process.env.PORT );
-});
-
-app.get('/', (req, res) => {
-    res.json({
-        ok: true,
-        msg: 'Respuesta'
-    });
 });
