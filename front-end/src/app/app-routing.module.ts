@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
+import { UsuarioLayoutComponent } from './layouts/usuario-layout/usuario-layout.component';
+import { HomePage } from './home/home.page';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: '', component: UsuarioLayoutComponent, children: [
+      { path: 'home', component: HomePage }
+    ]
   },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+  
 ];
 
 @NgModule({
