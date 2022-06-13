@@ -1,21 +1,25 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
-import { UsuarioLayoutComponent } from './layouts/usuario-layout/usuario-layout.component';
-import { HomePage } from './home/home.page';
+
+import { AuthRoutingModule } from './auth/auth.routing';
+import { PagesRoutingModule } from './pages/pages.routing';
+
+
 
 const routes: Routes = [
-  {
-    path: '', component: UsuarioLayoutComponent, children: [
-      { path: 'home', component: HomePage }
-    ]
-  },
+ 
+  //  /login y /recovery  --> authroutingmodule
+  //  /dashboard/*        --> pagesroutingmodule
+
+  { path: '**', redirectTo: 'login'}
   
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes),
+    AuthRoutingModule,
+    PagesRoutingModule
   ],
   exports: [RouterModule]
 })
