@@ -1,22 +1,25 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { NgModule } from '@angular/core';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module'; 
 import { AuthModule } from './auth/auth.module';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FooterComponent } from './commons/footer/footer.component';
 import { PagesModule } from './pages/pages.module';
 
 @NgModule({
-  declarations: [AppComponent,
+  declarations: [
+    AppComponent,
+    FooterComponent,
   ],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,AuthModule,PagesModule
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AuthModule,
+    PagesModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-  ],
-  bootstrap: [AppComponent
-  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
