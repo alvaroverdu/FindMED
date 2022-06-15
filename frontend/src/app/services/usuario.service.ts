@@ -135,6 +135,10 @@ export class UsuarioService {
     return `${environment.base_url}/upload/fotoperfil/${imagen}?token=${token}`;
   }
 
+  recuperarPassword(data){
+    return this.http.post(`${environment.base_url}/usuarios/recovery`, data, this.cabeceras);
+  }
+
   get cabeceras() {
     return {
       headers: {

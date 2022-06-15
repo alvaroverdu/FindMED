@@ -1,27 +1,40 @@
-<div id="recoverform">
-    <div class="text-center p-t-20 p-b-20">
-        <span class="db"><img src="../../assets/images/logo.png" alt="logo" /></span>
-    </div>
-    <div class="text-center">
-        <span class="text-white">Introduce tu email y te enviaremos las instrucciones para recuperar la contraseña.</span>
-    </div>
-    <div class="row m-t-20">
-        <!-- Form -->
-        <form class="col-12" action="index.html">
-            <!-- email -->
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="fa fa-at"></i></span>
-                </div>
-                <input type="text" class="form-control form-control-lg" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <!-- pwd -->
-            <div class="row m-t-20 p-t-20 border-top border-secondary">
-                <div class="col-12">
-                    <button class="btn btn-info" id="to-login" type="button" routerLink="/login"><i class="fa fa-key m-r-5"></i> Volver a login</button>
-                    <button class="btn btn-success float-right" type="button" name="action" (click)="recover()">Recuperar</button>
-                </div>
-            </div>
-        </form>
+<!-- <div id="loginform"> -->
+<!-- Form -->
+<div class="row justify-content-center shadow p-3 mb-5 bg-white rounded" style="font-family: 'Poppins', sans-serif;">
+    <div class="card col-12" id="caja-registro2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="text-center">
+                        <span>Introduce tu dirección de correo electrónico y te enviaremos las instrucciones para recuperar tu contraseña.</span>
+                    </div>
+                    <div class="row m-t-20">
+                        <!-- Form -->
+                        <form class="col-12" action="index.html" (ngSubmit)="recovery()" [formGroup]="recoveryForm">
+                            <!-- email -->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
+                                </div>
+                                <input type="text" class="form-control form-control-lg campo-recovery" formControlName="email" placeholder="Correo electrónico" aria-label="Username" aria-describedby="basic-addon1" required="">
+                            </div>
+                            <!-- pwd -->
+                            <!--<div class="row m-t-20 p-t-20">
+                                <div class="col-12">
+                                    <button class="btn btn-info" id="to-login" type="button" routerLink="/login"><i class="fa fa-key m-r-5"></i> Volver a login</button>
+                                    <button class="btn btn-success float-right" type="button" name="action" (click)="recover()">Recuperar</button>
+                                </div>
+                            </div>-->
+                            <div>
+                                <div>
+                                    <button class="btn btn-success float-right recuperar-contra" type="submit" name="action"><i class="fas fa-spinner fa-spin m-r-10" *ngIf="waiting"></i>Recuperar contraseña</button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-info volver-login " id="to-login " type="button " routerLink="/login"><i class="fa fa-key m-r-5 "></i> Volver a Iniciar sesión</button>
+                                </div>
+                            </div>
+                        </form>
+        </div>
     </div>
 </div>
+<!-- </div> -->

@@ -1,46 +1,80 @@
-<div id="loginform">
-    <div class="text-center p-t-20 p-b-20">
-        <span class="db"><img src="../../assets/images/logo.png" alt="logo" /></span>
+<!-- <div id="loginform"> -->
+<!-- Form -->
+<div class="row justify-content-center shadow p-3 mb-5 bg-white rounded" style="font-family: 'Poppins', sans-serif;">
+    <div class="card col-12" id="caja-registro2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="text-center p-t-20 p-b-20 justify-content-center">
+                        <span class="db"><img class="logo-login" src="../../assets/images/logo-pintado.png" alt="logo" /></span>
+                    </div>
+                </div>
+            </div>
+            <form class="form-horizontal m-t-20" id="loginform" (ngSubmit)="login()" [formGroup]="loginForm">
+                <div class="row justify-content-center">
+                    <h1 id="tituloLogin">FindMED</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-success1 text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg campo-login" formControlName="email" placeholder="Usuario" aria-label="Username" aria-describedby="basic-addon1" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-warning1 text-white" id="basic-addon2"><i class="fa fa-lock m-r-5"></i></span>
+                            </div>
+                            <input type="password" class="form-control form-control-lg campo-login" formControlName="password" placeholder="Contraseña" aria-label="Password" aria-describedby="basic-addon1" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group mb-3">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" formControlName="remember" id="customControlAutosizing1">
+                                <label class="custom-control-label text-light" id="recuerdame-login" for="customControlAutosizing1">Recuérdame</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="text-danger" *ngIf="!campoValido('email')">El usuario obligatorio y debe ser un email</p>
+                        <p class="text-danger" *ngIf="!campoValido('password')">El campo contraseña es obligatorio</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="p-t-20">
+                                <button class="btn btn-success float-right entrar" type="submit" [disabled]="waiting"><i class="fas fa-spinner fa-spin m-r-10" *ngIf="waiting"></i>Entrar</button>
+                                <button class="btn btn-info volver-login" id="to-recover" type="button" [disabled]="waiting" routerLink="/recovery"><i class="fa fa-lock m-r-5"></i> Recuperar contraseña </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="col-12">
+                        <div id="my-signin2" style="align-items: center;"></div>
+                    </div> -->
+
+                <!-- <div id="fb-root"></div>
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v10.0" nonce="lblkSIgl"></script>
+                    <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div> -->
+            </form>
+            <div class="row" style="text-align: center; margin:auto;">
+                <div class="col">
+                    <a style="color: #5da0a2;"class="text-center registro-aqui" id="registrate-aqui" routerLink="/register">¿Aún no te has registrado? Regístrate aquí.</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Form -->
-    <form class="form-horizontal m-t-20" id="loginform" (ngSubmit)="login()" [formGroup]="loginForm">
-        <div class="row p-b-30">
-            <div class="col-12">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fa fa-user"></i></span>
-                    </div>
-                    <input type="text" class="form-control form-control-lg" formControlName="email" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required="">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="fa fa-pen"></i></span>
-                    </div>
-                    <input type="text" class="form-control form-control-lg" formControlName="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="custom-control custom-checkbox mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" formControlName="remember" id="customControlAutosizing1">
-                        <label class="custom-control-label text-light" for="customControlAutosizing1">Recuerdame</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="text-danger" *ngIf="!campoValido('email')">El usuario obligatorio y debe ser un email</p>
-                <p class="text-danger" *ngIf="!campoValido('password')">El campo contraseña es obligatorio</p>
-            </div>
-        </div>
-        <div class="row border-top border-secondary">
-            <div class="col-12">
-                <div class="form-group">
-                    <div class="p-t-20">
-                        <button class="btn btn-info" id="to-recover" type="button" [disabled]="waiting" routerLink="/recovery"><i class="fa fa-lock m-r-5"></i>Recuperar contraseña</button>
-                        <button class="btn btn-success float-right" type="submit" [disabled]="waiting"><i class="fas fa-spinner fa-spin m-r-10" *ngIf="waiting"></i>Login</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
 </div>
+<!-- </div> -->

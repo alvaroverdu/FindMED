@@ -123,7 +123,7 @@ const enviarArchivo = async(req, res = repsonse) => {
                 msg: 'Archivo no existe'
             });
         }
-        pathArchivo = `${process.env.PATHUPLOAD}/no-imagen.jpg`;
+        pathArchivo = `${process.env.PATHUPLOAD}/no-imagen.png`;
     }
     res.sendFile(pathArchivo);
 }

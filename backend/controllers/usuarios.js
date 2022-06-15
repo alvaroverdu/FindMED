@@ -213,6 +213,60 @@ const crearUsuario = async(req, res = response) => {
     }
 }
 
+/*
+    POST usuarios/recovery
+*/
+
+const sendRecoverPassword = async(req, res = response) => {
+    //cogemos el email 
+    const emailV = req.body.email;
+    try {
+        //buscar que usuario tiene ese email
+        Usuario.findOne({ email: emailV }, function(err, usuario) {
+            if (!usuario) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: 'No se encuentra un usuario valido'
+                });
+            }
+            usuario.tokenRecovery = crypto.randomBytes(16).toString('hex');
+            usuario.save(function(err) {
+                // Si hay algún error al guardar el token en el usuario se devuelve un error 500
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        msg: err.message
+                    });
+                }
+                // Envíamos el email vía nodemailer al usuario
+                var transporter = nodemailer.createTransport({ service: 'Gmail', auth: { user: 'kernelcontacto@gmail.com', pass: 'Kernel2021' } });
+                var mailOptions = { from: 'kernelcontacto@gmail.com', to: usuario.email, subject: 'Recuperación de contraseña - Moony', text: 'Muy buenas,\n\n' + 'Por favor clique en el siguiente enlace para recuperar su contraseña: \nhttps:\/\/' + process.env.HOSTX + '\/recuperar-password\/' + usuario.tokenRecovery };
+                transporter.sendMail(mailOptions, function(err) {
+                    // Si hay algún error en el envío devolvemos un error 500
+                    if (err) {
+                        return res.status(500).json({
+                            ok: false,
+                            msg: err.message
+                        });
+                    }
+                    // Si todo va bien se devolverá lo siguiente
+                    res.json({
+                        ok: true,
+                        msg: 'Un email de recuperación de contraseña ha sido enviado a ' + usuario.email + '.',
+                        usuario: usuario,
+                    });
+                });
+            });
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: 'Error recuperando contraseña'
+        });
+    }
+}
+
 
 const actualizarPassword = async(req, res = response) => {
 
@@ -402,4 +456,4 @@ const borrarUsuario = async(req, res = response) => {
 }
 
 
-module.exports = { obtenerUsuarios, crearUsuario, actualizarUsuario, borrarUsuario, actualizarPassword, listaUsuarios, listaUsuariosRol }
+module.exports = { obtenerUsuarios, crearUsuario, sendRecoverPassword, actualizarUsuario, borrarUsuario, actualizarPassword, listaUsuarios, listaUsuariosRol }
