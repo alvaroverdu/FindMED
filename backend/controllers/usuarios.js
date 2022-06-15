@@ -40,7 +40,7 @@ const listaUsuarios = async(req, res) => {
     }
 
     try {
-        const usuarios = await Usuario.find({ _id: { $in: lista }, activo: true }).collation({ locale: 'es' }).sort({ apellidos: 1, nombre: 1 });
+        const usuarios = await Usuario.find({ _id: { $in: lista }, activo: true }).collation({ locale: 'es' }).sort({nombre: 1 });
         res.json({
             ok: true,
             msg: 'listaUsuarios',
@@ -72,7 +72,7 @@ const listaUsuariosRol = async(req, res) => {
     if (!lista) { listaB = []; }
 
     try {
-        const usuarios = await Usuario.find({ _id: { $nin: lista }, rol: rol, activo: true }).collation({ locale: 'es' }).sort({ apellidos: 1, nombre: 1 });
+        const usuarios = await Usuario.find({ _id: { $nin: lista }, rol: rol, activo: true }).collation({ locale: 'es' }).sort({nombre: 1 });
         res.json({
             ok: true,
             msg: 'listaUsuarios',
@@ -130,11 +130,11 @@ const obtenerUsuarios = async(req, res) => {
 
             let query = {};
             if (texto) {
-                query = { $or: [{ nombre: textoBusqueda }, { apellidos: textoBusqueda }, { email: textoBusqueda }] };
+                query = { $or: [{ nombre: textoBusqueda },{ email: textoBusqueda }] };
             }
 
             [usuarios, total] = await Promise.all([
-                Usuario.find(query).skip(desde).limit(registropp).collation({ locale: 'es' }).sort({ apellidos: 1, nombre: 1 }),
+                Usuario.find(query).skip(desde).limit(registropp).collation({ locale: 'es' }).sort({nombre: 1 }),
                 Usuario.countDocuments(query)
             ]);
         }
@@ -239,8 +239,8 @@ const sendRecoverPassword = async(req, res = response) => {
                     });
                 }
                 // Envíamos el email vía nodemailer al usuario
-                var transporter = nodemailer.createTransport({ service: 'Gmail', auth: { user: 'kernelcontacto@gmail.com', pass: 'Kernel2021' } });
-                var mailOptions = { from: 'kernelcontacto@gmail.com', to: usuario.email, subject: 'Recuperación de contraseña - Moony', text: 'Muy buenas,\n\n' + 'Por favor clique en el siguiente enlace para recuperar su contraseña: \nhttps:\/\/' + process.env.HOSTX + '\/recuperar-password\/' + usuario.tokenRecovery };
+                var transporter = nodemailer.createTransport({ service: 'Gmail', auth: { user: 'alvaroverdpina@gmail.com', pass: 'Alvaro2022' } });
+                var mailOptions = { from: 'alvaroverdpina@gmail.com', to: usuario.email, subject: 'Recuperación de contraseña - Moony', text: 'Muy buenas,\n\n' + 'Por favor clique en el siguiente enlace para recuperar su contraseña: \nhttps:\/\/' + process.env.HOSTX + '\/recuperar-password\/' + usuario.tokenRecovery };
                 transporter.sendMail(mailOptions, function(err) {
                     // Si hay algún error en el envío devolvemos un error 500
                     if (err) {

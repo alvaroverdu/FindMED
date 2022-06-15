@@ -28,17 +28,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row m-t-10">
-                        <div class="col-lg-3 col-md-12 text-lg-right">
-                            <span class="">Apellidos</span>
-                        </div>
-                        <div class="col-lg-8 col-md-12">
-                            <input type="text" class="form-control" formControlName="apellidos" [ngClass]="{'is-invalid' : campoNoValido('apellidos')}" id="apellidos">
-                            <div class="invalid-feedback">
-                                El campo es obligatorio
-                            </div>
-                        </div>
-                    </div>
                     <div class=" row m-t-10 ">
                         <div class="col-lg-3 col-md-12 text-lg-right ">
                             <span class=" ">Email</span>
@@ -69,8 +58,7 @@
                         <div class="col-lg-8 col-md-12 ">
                             <select class="select2 form-control custom-select" formControlName="rol" [ngClass]="{'is-invalid' : campoNoValido('rol')}" style="width: 100%; height:36px;" id="rol">
                                 <option value="ROL_ADMIN">Administrador / Adminsitradora</option>
-                                <option value="ROL_ALUMNO" selected>Alumno / Alumna</option>
-                                <option value="ROL_PROFESOR">Profesor / Profesora</option>
+                                <option value="ROL_USUARIO" selected>Usuario / Usuaria</option>
                             </select>
                             <div class="invalid-feedback">
                                 El campo es obligatorioas

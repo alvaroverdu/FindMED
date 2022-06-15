@@ -36,7 +36,6 @@
                         <thead>
                             <tr>
                                 <th>Foto</th>
-                                <th>Apellidos</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Rol</th>
@@ -50,7 +49,6 @@
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor micelda text-center">
                                     <img [src]="crearImagenUrl(usuario.imagen)" width="30px" class="rounded-circle fotoperfilimg">
                                 </td>
-                                <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.apellidos}}</td>
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.nombre}}</td>
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.email}}</td>
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.rol}}</td>
@@ -60,7 +58,7 @@
                                     <i class="fa fa-times text-danger" *ngIf="!usuario.activo"></i></td>
                                 <td class="text-center">
                                     <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" [routerLink]="['/admin/usuarios/usuario', usuario.uid]"></i>
-                                    <i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarUsuario(usuario.uid, usuario.nombre, usuario.apellidos)"></i></td>
+                                    <i class="fa fa-trash text-danger fa-lg micursor" (click)="eliminarUsuario(usuario.uid, usuario.nombre)"></i></td>
                             </tr>
                         </tbody>
                     </table>

@@ -23,7 +23,7 @@ export class NoauthGuard implements CanActivate {
                       case 'ROL_ADMIN':
                         this.router.navigateByUrl('/admin/dashboard');
                         break;
-                      case 'ROL_ALUMNO':
+                      case 'ROL_USUARIO':
                         this.router.navigateByUrl('/alu/dashboard');
                         break;
                       case 'ROL_PROFESOR':

@@ -33,7 +33,7 @@ export class SidebarService {
         return this.menuAdmin;
       case 'ROL_PROFESOR':
         return this.menuProfesor;
-      case 'ROL_ALUMNO':
+      case 'ROL_USUARIO':
         return this.menuAlumno;
     }
 

@@ -6,6 +6,7 @@ import { tap, map, catchError } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
+import { Grupo } from '../models/grupo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -90,9 +91,9 @@ export class UsuarioService {
       .pipe(
         tap( (res: any) => {
           // extaemos los datos que nos ha devuelto y los guardamos en el usurio y en localstore
-          const { uid, nombre, apellidos, email, rol, alta, activo, imagen, token} = res;
+          const { uid, nombre, email, rol, alta, edad, enfermedades, activo, imagen, token} = res;
           localStorage.setItem('token', token);
-          this.usuario = new Usuario(uid, rol, nombre, apellidos, email, alta, activo, imagen);
+          this.usuario = new Usuario(uid, rol, nombre, email, alta, edad, enfermedades, activo, imagen);
         }),
         map ( res => {
           return correcto;
@@ -120,9 +121,8 @@ export class UsuarioService {
     this.usuario.imagen = nueva;
   }
 
-  establecerdatos(nombre: string, apellidos: string, email: string): void {
+  establecerdatos(nombre: string,email: string): void {
     this.usuario.nombre = nombre;
-    this.usuario.apellidos = apellidos;
     this.usuario.email = email;
   }
   
@@ -162,12 +162,20 @@ export class UsuarioService {
     return this.usuario.nombre;
   }
 
-  get apellidos(): string{
-    return this.usuario.apellidos;
-  }
-
   get email(): string{
     return this.usuario.email;
+  }
+
+  get edad(): number{
+    return this.usuario.edad;
+  }
+  
+  get ubicacion(): string{
+    return this.usuario.ubicacion;
+  }
+
+  get enfermedades(): Grupo[]{
+    return this.usuario.enfermedades;
   }
 
   get imagen(): string{

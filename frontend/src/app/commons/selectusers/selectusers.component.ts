@@ -13,7 +13,7 @@ export class SelectusersComponent implements OnInit, OnChanges {
   // Recibe una lista de usuarios extraidos de alumnos/profesores de BD
   // tiene la estructura {_id: string, usuario: string}
   @Input() selected: {_id: string, usuario: string}[] = [];
-  @Input() rol: string = 'ROL_ALUMNO';
+  @Input() rol: string = 'ROL_USUARIO';
 
   // Emite la lista de string de los usuarios seleccionados
   @Output() nuevaLista:EventEmitter<string[]> = new EventEmitter();
@@ -119,7 +119,7 @@ export class SelectusersComponent implements OnInit, OnChanges {
         .subscribe( res => {
           this.listaSelected=[];
           res['usuarios'].map( usuario => {
-            this.listaSelected.push({nombre: `${usuario.apellidos}, ${usuario.nombre}` , uid: `${usuario.uid}`});  
+            this.listaSelected.push({nombre: `${usuario.nombre}` , uid: `${usuario.uid}`});  
           });
         }, (err) => {
         });
@@ -138,7 +138,7 @@ export class SelectusersComponent implements OnInit, OnChanges {
       .subscribe( res => {
         this.listaUsers = [];
         res['usuarios'].map( usuario => {
-          this.listaUsers.push({nombre: `${usuario.apellidos},${usuario.nombre}` , uid: `${usuario.uid}`});
+          this.listaUsers.push({nombre: `${usuario.nombre}` , uid: `${usuario.uid}`});
         });
       }, (err) => {
       });

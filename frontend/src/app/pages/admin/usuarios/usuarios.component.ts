@@ -65,7 +65,7 @@ export class UsuariosComponent implements OnInit {
     this.cargarUsuarios(this.ultimaBusqueda);
   }
 
-  eliminarUsuario( uid: string, nombre: string, apellidos: string) {
+  eliminarUsuario( uid: string, nombre: string) {
     // Comprobar que no me borro a mi mismo
     if (uid === this.ususuarioService.uid) {
       Swal.fire({icon: 'warning', title: 'Oops...', text: 'No puedes eliminar tu propio usuario',});
@@ -79,7 +79,7 @@ export class UsuariosComponent implements OnInit {
 
     Swal.fire({
       title: 'Eliminar usuario',
-      text: `Al eliminar al usuario '${nombre} ${apellidos}' se perderán todos los datos asociados. ¿Desea continuar?`,
+      text: `Al eliminar al usuario '${nombre}' se perderán todos los datos asociados. ¿Desea continuar?`,
       icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

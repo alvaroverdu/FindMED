@@ -5,10 +5,6 @@ const UsuarioSchema = Schema({
         type: String,
         require: true
     },
-    apellidos: {
-        type: String,
-        require: true
-    },
     email: {
         type: String,
         require: true,
@@ -24,7 +20,17 @@ const UsuarioSchema = Schema({
     rol: {
         type: String,
         require: true,
-        default: 'ROL_ALUMNO'
+        default: 'ROL_USUARIO'
+    },
+    edad: {
+        type: Number,
+    },
+    ubicacion: {
+        type: String,
+    },
+    enfermedades: {
+        type: Schema.Types.ObjectId,
+        ref: 'Curso'
     },
     alta: {
         type: Date,

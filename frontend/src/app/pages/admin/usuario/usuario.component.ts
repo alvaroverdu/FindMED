@@ -20,9 +20,8 @@ export class UsuarioComponent implements OnInit {
     uid: [{value: 'nuevo', disabled: true}, Validators.required],
     email: [ '', [Validators.required, Validators.email] ],
     nombre: ['', Validators.required ],
-    apellidos: ['', Validators.required ],
     password: ['', Validators.required ],
-    rol: ['ROL_ALUMNO', Validators.required ],
+    rol: ['ROL_USUARIO', Validators.required ],
     activo: [true, Validators.required ],
   });
 
@@ -61,7 +60,7 @@ export class UsuarioComponent implements OnInit {
     this.nuevoPassword.reset();
     this.showOKP = false;
     this.datosForm.get('uid').setValue('nuevo');
-    this.datosForm.get('rol').setValue('ROL_ALUMNO');
+    this.datosForm.get('rol').setValue('ROL_USUARIO');
     this.datosForm.get('activo').setValue(true);
     this.datosForm.get('password').enable();
     this.enablepass = true;
@@ -76,7 +75,6 @@ export class UsuarioComponent implements OnInit {
   cargaDatosForm( res: any): void {
     this.datosForm.get('uid').setValue(res['usuarios'].uid);
     this.datosForm.get('nombre').setValue(res['usuarios'].nombre);
-    this.datosForm.get('apellidos').setValue(res['usuarios'].apellidos);
     this.datosForm.get('email').setValue(res['usuarios'].email);
     this.datosForm.get('rol').setValue(res['usuarios'].rol);
     this.datosForm.get('activo').setValue(res['usuarios'].activo);

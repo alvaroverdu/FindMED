@@ -1,5 +1,6 @@
 
 import { environment } from '../../environments/environment';
+import { Grupo } from './grupo.model';
 
 const base_url: string = environment.base_url;
 
@@ -8,8 +9,10 @@ export class Usuario {
     constructor( public uid: string,
                  public rol: string,
                  public nombre?: string,
-                 public apellidos?: string,
                  public email?: string,
+                 public edad?: number,
+                 public ubicacion?: string,
+                 public enfermedades?: Grupo[],
                  public alta?: Date,
                  public activo?: boolean,
                  public imagen?: string) {}

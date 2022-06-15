@@ -22,9 +22,9 @@ import { AsignaturaprofComponent } from './prof/asignaturaprof/asignaturaprof.co
   /perfil                               [*]
   /admin/* --> páginas de administrador [ROL_ADMIN]
   /prof/*  --> páginas de profesor      [ROL_PROFESOR]
-  /alu/*   --> páginas de alumno        [ROL_ALUMNO]
+  /alu/*   --> páginas de usuario        [ROL_USUARIO]
 
-  data --> pasar informacion junto a la ruta para breadcrums y para AuthGuard {rol: 'ROL_ADMIN/ROL_PROFESOR/ROL_ALUMNO/*'}
+  data --> pasar informacion junto a la ruta para breadcrums y para AuthGuard {rol: 'ROL_ADMIN/ROL_PROFESOR/ROL_USUARIO/*'}
 
 */
 
@@ -106,10 +106,10 @@ const routes: Routes = [
     { path: '**', redirectTo: 'dashboard'}
   ]},
 
-  { path: 'alu', component: AdminLayoutComponent, canActivate: [ AuthGuard ], data: {rol: 'ROL_ALUMNO'}, 
+  { path: 'alu', component: AdminLayoutComponent, canActivate: [ AuthGuard ], data: {rol: 'ROL_USUARIO'}, 
     children: [
     { path: 'dashboard', component: DashboardaluComponent, canActivate: [ AuthGuard ], data: { 
-                                                        rol:'ROL_ALUMNO',
+                                                        rol:'ROL_USUARIO',
                                                         titulo: 'Dashboard Alumno',
                                                         breadcrums: []
                                                       },},

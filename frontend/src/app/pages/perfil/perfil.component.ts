@@ -24,7 +24,6 @@ export class PerfilComponent implements OnInit {
   public datosForm = this.fb.group({
     email: [ '', [Validators.required, Validators.email] ],
     nombre: ['', Validators.required ],
-    apellidos: ['', Validators.required ],
     imagen: ['']
   });
 
@@ -66,7 +65,7 @@ export class PerfilComponent implements OnInit {
     // Actualizamos los datos del formulario y si va bien actualizamos foto
     this.usuarioService.actualizarUsuario( this.usuarioService.uid, this.datosForm.value )
     .subscribe( res => {
-      this.usuarioService.establecerdatos( res['usuario'].nombre, res['usuario'].apellidos, res['usuario'].email );
+      this.usuarioService.establecerdatos( res['usuario'].nombre,res['usuario'].email );
 
       // Si la actualización de datos ha ido bien, entonces actualizamso foto si hay
       if (this.foto ) {
@@ -126,7 +125,6 @@ export class PerfilComponent implements OnInit {
   // Recupera los datos del usuario
   cargarUsuario():void {
     this.datosForm.get('nombre').setValue(this.usuarioService.nombre);
-    this.datosForm.get('apellidos').setValue(this.usuarioService.apellidos);
     this.datosForm.get('email').setValue(this.usuarioService.email);
     this.datosForm.get('imagen').setValue('');
     this.imagenUrl = this.usuarioService.imagenURL;
