@@ -17,6 +17,7 @@ import { GruposComponent } from './admin/grupos/grupos.component';
 import { GrupoComponent } from './admin/grupo/grupo.component';
 import { AsignaturasprofComponent } from './prof/asignaturasprof/asignaturasprof.component';
 import { AsignaturaprofComponent } from './prof/asignaturaprof/asignaturaprof.component';
+import { SintomasComponent } from './admin/sintomas/sintomas.component';
 
 /*
   /perfil                               [*]
@@ -83,7 +84,13 @@ const routes: Routes = [
                                                         titulo: 'Grupo',
                                                         breadcrums: [ {titulo: 'Grupos', url: '/admin/grupos'} ],
                                                       },},
+    { path: 'sintomas', component: SintomasComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol: 'ROL_ADMIN',
+                                                        titulo: 'Sintomas',
+                                                        breadcrums: [ ],
+                                                      },},
     { path: '**', redirectTo: 'dashboard'}
+    
   ]},
 
   { path: 'prof', component: AdminLayoutComponent, canActivate: [ AuthGuard ], data: {rol: 'ROL_PROFESOR'},

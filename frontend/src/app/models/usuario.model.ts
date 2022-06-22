@@ -1,7 +1,6 @@
-
 import { environment } from '../../environments/environment';
 import { Grupo } from './grupo.model';
-
+import { Enfermedad } from './enfermedad.model';
 const base_url: string = environment.base_url;
 
 export class Usuario {
@@ -12,7 +11,7 @@ export class Usuario {
                  public email?: string,
                  public edad?: number,
                  public ubicacion?: string,
-                 public enfermedades?: Grupo[],
+                 public enfermedades?: Enfermedad[],
                  public alta?: Date,
                  public activo?: boolean,
                  public imagen?: string) {}

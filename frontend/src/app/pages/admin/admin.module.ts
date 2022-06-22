@@ -14,6 +14,7 @@ import { AsignaturasComponent } from './asignaturas/asignaturas.component';
 import { AsignaturaComponent } from './asignatura/asignatura.component';
 import { GruposComponent } from './grupos/grupos.component';
 import { GrupoComponent } from './grupo/grupo.component';
+import { SintomasComponent } from './sintomas/sintomas.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { GrupoComponent } from './grupo/grupo.component';
     AsignaturaComponent,
     GruposComponent,
     GrupoComponent,
+    SintomasComponent,
   ],
   exports: [
     CursosComponent,

@@ -7,6 +7,7 @@ import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
 import { Grupo } from '../models/grupo.model';
+import { Enfermedad } from '../models/enfermedad.model';
 
 @Injectable({
   providedIn: 'root'
@@ -174,7 +175,7 @@ export class UsuarioService {
     return this.usuario.ubicacion;
   }
 
-  get enfermedades(): Grupo[]{
+  get enfermedades(): Enfermedad[]{
     return this.usuario.enfermedades;
   }
 

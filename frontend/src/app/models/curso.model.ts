@@ -1,3 +1,5 @@
+import { Asignatura } from './asignatura.model'
+
 
 export class Curso {
 
