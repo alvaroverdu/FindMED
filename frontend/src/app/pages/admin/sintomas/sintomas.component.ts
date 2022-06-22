@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { Curso } from '../../../models/curso.model';
 import { CursoService } from '../../../services/curso.service';
 import Swal from 'sweetalert2';
+import { Sintoma } from '../../../models/sintoma.model';
 import { UsuarioService } from '../../../services/usuario.service';
 import { SintomaService } from '../../../services/sintoma.service';
 
@@ -20,7 +21,7 @@ export class SintomasComponent implements OnInit {
   // Control del loading
   public loading = false;
   // Sintomas lsitado
-  public listaRegistros: Curso[] = [];
+  public listaRegistros: Sintoma[] = [];
   // Ultima búsqueda
   public ultimaBusqueda = '';
   

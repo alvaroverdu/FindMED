@@ -19,6 +19,9 @@ import { AsignaturasprofComponent } from './prof/asignaturasprof/asignaturasprof
 import { AsignaturaprofComponent } from './prof/asignaturaprof/asignaturaprof.component';
 import { SintomasComponent } from './admin/sintomas/sintomas.component';
 import { SintomaComponent } from './admin/sintoma/sintoma.component';
+import { EnfermedadesComponent } from './admin/enfermedades/enfermedades.component';
+import { EnfermedadComponent } from './admin/enfermedad/enfermedad.component';
+
 
 /*
   /perfil                               [*]
@@ -95,7 +98,18 @@ const routes: Routes = [
                                                         titulo: 'Sintoma',
                                                         breadcrums: [ {titulo: 'Sintomas', url: '/admin/sintomas'} ],
                                                       },},
+    { path: 'enfermedades', component: EnfermedadesComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol: 'ROL_ADMIN',
+                                                        titulo: 'Enfermedades',
+                                                        breadcrums: [ ],
+                                                      },},
+    { path: 'enfermedades/enfermedad/:uid', component: EnfermedadComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol: 'ROL_ADMIN',
+                                                        titulo: 'Enfermedad',
+                                                        breadcrums: [ {titulo: 'Enfermedades', url: '/admin/enfermedades'} ],
+                                                      },},
     { path: '**', redirectTo: 'dashboard'}
+
     
   ]},
 

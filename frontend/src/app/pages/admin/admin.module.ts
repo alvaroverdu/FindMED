@@ -19,6 +19,7 @@ import { SintomaComponent } from './sintoma/sintoma.component';
 import { EnfermedadesComponent } from './enfermedades/enfermedades.component';
 import { EnfermedadComponent } from './enfermedad/enfermedad.component';
 
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -34,6 +35,7 @@ import { EnfermedadComponent } from './enfermedad/enfermedad.component';
     SintomaComponent,
     EnfermedadesComponent,
     EnfermedadComponent,
+
   ],
   exports: [
     CursosComponent,
@@ -43,6 +45,7 @@ import { EnfermedadComponent } from './enfermedad/enfermedad.component';
     DashboardComponent,
     AsignaturasComponent,
     AsignaturaComponent,
+
   ],
   imports: [
     CommonModule,
