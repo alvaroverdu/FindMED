@@ -23,15 +23,15 @@ export class SintomaService {
     return this.http.get(`${environment.base_url}/sintomas/?desde=${desde}&texto=${textoBusqueda}&hasta=${hasta}` , this.cabeceras);
   }
 
-  crearCurso( data: Sintoma ): Observable<object> {
+  crearSintoma( data: Sintoma ): Observable<object> {
     return this.http.post(`${environment.base_url}/sintomas/`, data, this.cabeceras);
   }
 
-  actualizarCurso(uid: string, data: Sintoma): Observable<object> {
+  actualizarSintoma(uid: string, data: Sintoma): Observable<object> {
     return this.http.put(`${environment.base_url}/sintomas/${uid}`, data, this.cabeceras);
   }
 
-  eliminarCurso (uid) {
+  eliminarSintoma (uid) {
     return this.http.delete(`${environment.base_url}/sintomas/${uid}`, this.cabeceras);
   }
 

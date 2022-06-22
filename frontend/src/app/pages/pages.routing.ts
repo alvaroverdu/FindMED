@@ -18,6 +18,7 @@ import { GrupoComponent } from './admin/grupo/grupo.component';
 import { AsignaturasprofComponent } from './prof/asignaturasprof/asignaturasprof.component';
 import { AsignaturaprofComponent } from './prof/asignaturaprof/asignaturaprof.component';
 import { SintomasComponent } from './admin/sintomas/sintomas.component';
+import { SintomaComponent } from './admin/sintoma/sintoma.component';
 
 /*
   /perfil                               [*]
@@ -88,6 +89,11 @@ const routes: Routes = [
                                                         rol: 'ROL_ADMIN',
                                                         titulo: 'Sintomas',
                                                         breadcrums: [ ],
+                                                      },},
+    { path: 'sintomas/sintoma/:uid', component: SintomaComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol: 'ROL_ADMIN',
+                                                        titulo: 'Sintoma',
+                                                        breadcrums: [ {titulo: 'Sintomas', url: '/admin/sintomas'} ],
                                                       },},
     { path: '**', redirectTo: 'dashboard'}
     

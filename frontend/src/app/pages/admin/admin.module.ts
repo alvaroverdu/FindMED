@@ -15,6 +15,9 @@ import { AsignaturaComponent } from './asignatura/asignatura.component';
 import { GruposComponent } from './grupos/grupos.component';
 import { GrupoComponent } from './grupo/grupo.component';
 import { SintomasComponent } from './sintomas/sintomas.component';
+import { SintomaComponent } from './sintoma/sintoma.component';
+import { EnfermedadesComponent } from './enfermedades/enfermedades.component';
+import { EnfermedadComponent } from './enfermedad/enfermedad.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { SintomasComponent } from './sintomas/sintomas.component';
     GruposComponent,
     GrupoComponent,
     SintomasComponent,
+    SintomaComponent,
+    EnfermedadesComponent,
+    EnfermedadComponent,
   ],
   exports: [
     CursosComponent,
