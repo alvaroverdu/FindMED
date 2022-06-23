@@ -24,7 +24,7 @@ export class EnfermedadService {
     return this.http.get(`${environment.base_url}/enfermedades/?desde=${desde}&texto=${textoBusqueda}&hasta=${hasta}` , this.cabeceras);
   }
 
-  crearSintoma( data: Enfermedad ): Observable<object> {
+  crearEnfermedad( data: Enfermedad ): Observable<object> {
     return this.http.post(`${environment.base_url}/enfermedades/`, data, this.cabeceras);
   }
 

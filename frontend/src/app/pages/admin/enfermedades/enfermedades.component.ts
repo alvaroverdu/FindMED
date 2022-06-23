@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { CursoService } from '../../../services/curso.service';
 import Swal from 'sweetalert2';
 import { Enfermedad } from '../../../models/enfermedad.model';
+import { Sintoma } from 'src/app/models/sintoma.model';
 import { UsuarioService } from '../../../services/usuario.service';
 import { SintomaService } from '../../../services/sintoma.service';
 import { EnfermedadService } from '../../../services/enfermedad.service';
@@ -26,9 +26,10 @@ export class EnfermedadesComponent implements OnInit {
  // Ultima búsqueda
  public ultimaBusqueda = '';
  
+ public sintomas: Sintoma[] = [];
 
- constructor( private cursoService: CursoService,
-              private usuarioService: UsuarioService,
+
+ constructor( private usuarioService: UsuarioService,
               private sintomaService: SintomaService,
               private enfermedadService: EnfermedadService) { }
 
@@ -60,6 +61,15 @@ export class EnfermedadesComponent implements OnInit {
        this.loading = false;
      });
  }
+
+ cargarSintomas() {
+  // cargamos todos los cursos
+  this.sintomaService.cargarSintomas(0, '','todos')
+    .subscribe( res => {
+      this.sintomas = res['cursos'];
+    });
+}
+
 
  cambiarPagina( pagina: number) {
    pagina = (pagina < 0 ? 0 : pagina);

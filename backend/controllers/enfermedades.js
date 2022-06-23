@@ -8,28 +8,39 @@ const obtenerEnfermedades = async(req, res = repsonse) => {
 
     // Paginación
     const desde = Number(req.query.desde) || 0;
-    const registropp = Number(process.env.DOCSPERPAGE);
+    const hasta = req.query.hasta || '';
+    let registropp = Number(process.env.DOCSPERPAGE);
     const id = req.query.id;
-    const textos = req.query.texto || '';
-
+    const texto = req.query.texto;
+    let textoBusqueda = '';
+    if (texto) {
+        textoBusqueda = new RegExp(texto, 'i');
+        //console.log('texto', texto, ' textoBusqueda', textoBusqueda);
+    }
+    if (hasta === 'todos') {
+        registropp = 1000;
+    }
+    //await sleep(2000);
     try {
         let enfermedades, total;
         if (id) {
             [enfermedades, total] = await Promise.all([
-                Enfermedad.findById(id).populate('nombre', '-__v'),
+                Enfermedad.findById(id),
                 Enfermedad.countDocuments()
             ]);
         } else {
-            let query = {};
-            if (textos !== '') {
-                texto = new RegExp(textos, 'i');
-            } 
-            [enfermedades, total] = await Promise.all([
-                Enfermedad.find(query).skip(desde).limit(registropp).populate('nombre', '-__v'),
-                Enfermedad.countDocuments(query)
-            ]);
+            if (texto) {
+                [enfermedades, total] = await Promise.all([
+                    Enfermedad.find({ $or: [{ nombre: textoBusqueda }] }).skip(desde).limit(registropp),
+                    Enfermedad.countDocuments({ $or: [{ nombre: textoBusqueda }] })
+                ]);
+            } else {
+                [enfermedades, total] = await Promise.all([
+                    Enfermedad.find({}).skip(desde).limit(registropp),
+                    Enfermedad.countDocuments()
+                ]);
+            }
         }
-
         res.json({
             ok: true,
             msg: 'obtenerEnfermedades',

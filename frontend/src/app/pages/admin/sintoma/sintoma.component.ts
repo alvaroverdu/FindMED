@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CursoService } from '../../../services/curso.service';
 import { SintomaService } from '../../../services/sintoma.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -22,7 +21,6 @@ export class SintomaComponent implements OnInit {
   public uid: string = 'nuevo';
 
   constructor( private fb: FormBuilder,
-               private cursoService: CursoService,
                private sintomaService: SintomaService,
                private route: ActivatedRoute,
                private router: Router) { }

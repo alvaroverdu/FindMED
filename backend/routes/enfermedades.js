@@ -12,7 +12,7 @@ const router = Router();
 router.get('/', [
     validarJWT,
     // Campos opcionales que si vienen los validamos desde e id
-    check('id', 'El id del grupo debe ser válido').optional().isMongoId(),
+    check('id', 'El id de la enfermedad debe ser válido').optional().isMongoId(),
     check('desde', 'El desde debe ser un número').optional().isNumeric(),
     check('texto', 'El texto de búsqueda debe ser un texto').optional().trim(),
     validarCampos,

@@ -13,6 +13,7 @@ export class SidebarService {
     { titulo: 'Gestión cursos', icono: 'fa fa-calendar-alt', sub: false, url: '/admin/cursos'},
     { titulo: 'Gestión asignaturas', icono: 'fa fa-sticky-note', sub: false, url: '/admin/asignaturas'},
     { titulo: 'Gestión grupos', icono: 'fa fa-object-group', sub: false, url: '/admin/grupos'},
+    { titulo: 'Gestión enfermedades', icono: 'fa fa-plus-square', sub: false, url: '/admin/enfermedades'},
     { titulo: 'Gestión sintomas', icono: 'fa fa-stethoscope', sub: false, url: '/admin/sintomas'},
 
   ];
