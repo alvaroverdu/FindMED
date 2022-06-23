@@ -21,6 +21,8 @@ import { SintomasComponent } from './admin/sintomas/sintomas.component';
 import { SintomaComponent } from './admin/sintoma/sintoma.component';
 import { EnfermedadesComponent } from './admin/enfermedades/enfermedades.component';
 import { EnfermedadComponent } from './admin/enfermedad/enfermedad.component';
+import { CentrosComponent } from './admin/centros/centros.component';
+import { CentroComponent } from './admin/centro/centro.component';
 
 
 /*
@@ -107,6 +109,16 @@ const routes: Routes = [
                                                         rol: 'ROL_ADMIN',
                                                         titulo: 'Enfermedad',
                                                         breadcrums: [ {titulo: 'Enfermedades', url: '/admin/enfermedades'} ],
+                                                      },},
+    { path: 'centros', component: CentrosComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol: 'ROL_ADMIN',
+                                                        titulo: 'Centros',
+                                                        breadcrums: [ ],
+                                                      },},
+    { path: 'centros/centro/:uid', component: CentroComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol: 'ROL_ADMIN',
+                                                        titulo: 'Centro',
+                                                        breadcrums: [ {titulo: 'Centros', url: '/admin/centros'} ],
                                                       },},
     { path: '**', redirectTo: 'dashboard'}
 

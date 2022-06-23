@@ -18,6 +18,8 @@ import { SintomasComponent } from './sintomas/sintomas.component';
 import { SintomaComponent } from './sintoma/sintoma.component';
 import { EnfermedadesComponent } from './enfermedades/enfermedades.component';
 import { EnfermedadComponent } from './enfermedad/enfermedad.component';
+import { CentrosComponent } from './centros/centros.component';
+import { CentroComponent } from './centro/centro.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { EnfermedadComponent } from './enfermedad/enfermedad.component';
     SintomaComponent,
     EnfermedadesComponent,
     EnfermedadComponent,
+    CentrosComponent,
+    CentroComponent,
 
   ],
   exports: [
