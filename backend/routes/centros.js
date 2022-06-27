@@ -13,18 +13,15 @@ const router = Router();
 router.get('/', [
     validarJWT,
     // Campos opcionales que si vienen los validamos desde e id
-    check('nombre', 'El argumento nombre es obligatorio').not().isEmpty().trim(),
-    check('ubicacion', 'El argumento ubicacion es obligatorio').not().isEmpty().trim(),
-    check('id', 'El id del curso debe ser válido').optional().isMongoId(),
+    check('id', 'El id de la enfermedad debe ser válido').optional().isMongoId(),
     check('desde', 'El desde debe ser un número').optional().isNumeric(),
-    check('texto', 'El texto debe ser válido').optional().trim(),
+    check('texto', 'El texto de búsqueda debe ser un texto').optional().trim(),
     validarCampos
 ], obtenerCentros);
 router.post('/', [
     validarJWT,
     check('nombre', 'El argumento nombre es obligatorio').not().isEmpty().trim(),
     check('ubicacion', 'El argumento ubicacion es obligatorio').not().isEmpty().trim(),
-    check('activo', 'El argumento activo es obligatorio y debe ser true/false').isBoolean(),
     validarCampos,
 ], crearCentro);
 router.put('/:id', [

@@ -41,7 +41,7 @@ const obtenerCentros = async(req, res = repsonse) => {
                     Centro.countDocuments({ $or: [{ nombre: textoBusqueda }, { especialidad: textoBusqueda }] })
                 ]);
             } else {
-                [centro, total] = await Promise.all([
+                [centros, total] = await Promise.all([
                     Centro.find({}).skip(desde).limit(registropp),
                     Centro.countDocuments()
                 ]);
@@ -49,7 +49,7 @@ const obtenerCentros = async(req, res = repsonse) => {
         }
         res.json({
             ok: true,
-            msg: 'obtenerCentro',
+            msg: 'obtenerCentros',
             centros,
             page: {
                 desde,

@@ -66,7 +66,7 @@ export class EnfermedadesComponent implements OnInit {
   // cargamos todos los cursos
   this.sintomaService.cargarSintomas(0, '','todos')
     .subscribe( res => {
-      this.sintomas = res['cursos'];
+      this.sintomas = res['sintomas'];
     });
 }
 
