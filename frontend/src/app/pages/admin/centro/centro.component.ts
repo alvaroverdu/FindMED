@@ -57,7 +57,7 @@ export class CentroComponent implements OnInit {
           this.datosForm.get('nombre').setValue(res['centros'].nombre);
           this.datosForm.get('especialidad').setValue(res['centros'].especialidad);
           this.datosForm.get('ubicacion').setValue(res['centros'].ubicacion);
-          this.datosForm.get('enfermedades').setValue(res['centros'].enfermedades);
+          //this.datosForm.get('enfermedades').setValue(res['centros'].enfermedades);
           
           this.datosForm.markAsPristine();
           this.submited = true;

@@ -64,7 +64,6 @@ export class CentrosComponent implements OnInit {
        Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo', });
        this.loading = false;
      });
-     console.log(this.listaRegistros);
  }
 
  cargarEnfermedades() {
