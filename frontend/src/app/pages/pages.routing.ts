@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
 
 import { AdminLayoutComponent } from '../layouts/admin-layout/admin-layout.component';
+import { UsuarioLayoutComponent } from '../layouts/usuario-layout/usuario-layout.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UsuariosComponent } from './admin/usuarios/usuarios.component';
 import { UsuarioComponent } from './admin/usuario/usuario.component';
@@ -23,13 +24,14 @@ import { EnfermedadesComponent } from './admin/enfermedades/enfermedades.compone
 import { EnfermedadComponent } from './admin/enfermedad/enfermedad.component';
 import { CentrosComponent } from './admin/centros/centros.component';
 import { CentroComponent } from './admin/centro/centro.component';
+import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.component';
+import { MainpageComponent } from './usuario/mainpage/mainpage.component';
 
 
 /*
   /perfil                               [*]
   /admin/* --> páginas de administrador [ROL_ADMIN]
-  /prof/*  --> páginas de profesor      [ROL_PROFESOR]
-  /alu/*   --> páginas de usuario        [ROL_USUARIO]
+  /usuario/*   --> páginas de usuario        [ROL_USUARIO]
 
   data --> pasar informacion junto a la ruta para breadcrums y para AuthGuard {rol: 'ROL_ADMIN/ROL_PROFESOR/ROL_USUARIO/*'}
 
@@ -145,9 +147,9 @@ const routes: Routes = [
     { path: '**', redirectTo: 'dashboard'}
   ]},
 
-  { path: 'alu', component: AdminLayoutComponent, canActivate: [ AuthGuard ], data: {rol: 'ROL_USUARIO'}, 
+  { path: 'usuario', component: UsuarioLayoutComponent, canActivate: [ AuthGuard ], data: {rol: 'ROL_USUARIO'}, 
     children: [
-    { path: 'dashboard', component: DashboardaluComponent, canActivate: [ AuthGuard ], data: { 
+    { path: 'mainpage', component: MainpageComponent, canActivate: [ AuthGuard ], data: { 
                                                         rol:'ROL_USUARIO',
                                                         titulo: 'Dashboard Alumno',
                                                         breadcrums: []

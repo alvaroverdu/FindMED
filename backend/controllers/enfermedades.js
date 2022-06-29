@@ -97,7 +97,7 @@ const crearEnfermedad = async(req, res = response) => {
             const listaalu = sintomas.map(registro => {
                 if (registro.sintoma) {
                     listasintomasbusqueda.push(registro.sintoma);
-                    listaalumnosinsertar.push(registro);
+                    listasintomasinsertar.push(registro);
                 }
             });
             // Comprobamos que los alumnos que nos pasan existen, buscamos todos los alumnos de la lista

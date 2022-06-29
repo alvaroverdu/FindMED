@@ -9,6 +9,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { AdminModule } from './admin/admin.module';
 import { AluModule } from './alu/alu.module';
 import { ProfModule } from './prof/prof.module';
+import { UsuarioModule } from './usuario/usuario.module';
 
 import { CommonsModule } from '../commons/commons.module';
 
@@ -30,6 +31,7 @@ import { CommonsModule } from '../commons/commons.module';
     AluModule,
     AdminModule,
     ProfModule,
+    UsuarioModule,
 
     CommonsModule,
 

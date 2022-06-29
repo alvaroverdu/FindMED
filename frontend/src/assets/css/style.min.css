@@ -10635,12 +10635,12 @@ html[dir=ltr] body .p-l-0 {
 }
 
 #main-wrapper .topbar .top-navbar .navbar-header[data-logobg=skin5] {
-    background: #1F262D
+    background: #5da0a2
 }
 
 #main-wrapper .topbar .navbar-collapse[data-navbarbg=skin5],
 #main-wrapper .topbar[data-navbarbg=skin5] {
-    background: #1F262D
+    background: #5da0a2
 }
 
 #main-wrapper .left-sidebar[data-sidebarbg=skin5],
@@ -10650,8 +10650,9 @@ html[dir=ltr] body .p-l-0 {
 
 #main-wrapper .left-sidebar[data-sidebarbg=skin5] .create-btn,
 #main-wrapper .left-sidebar[data-sidebarbg=skin5] ul .create-btn {
-    background: #27a9e3
+    background: #5da0a2
 }
+
 
 #main-wrapper {
     width: 100%;
