@@ -21,7 +21,7 @@ export class CentroComponent implements OnInit {
     nombre: ['', Validators.required ],
     especialidad: ['', Validators.required ],
     ubicacion: ['', Validators.required ],
-    //enfermedades: ['', Validators.required ],
+    enfermedades: ['', Validators.required ],
   });
   public submited = false;
   public uid: string = 'nuevo';
@@ -57,7 +57,7 @@ export class CentroComponent implements OnInit {
           this.datosForm.get('nombre').setValue(res['centros'].nombre);
           this.datosForm.get('especialidad').setValue(res['centros'].especialidad);
           this.datosForm.get('ubicacion').setValue(res['centros'].ubicacion);
-          //this.datosForm.get('enfermedades').setValue(res['centros'].enfermedades);
+          this.datosForm.get('enfermedades').setValue(res['centros'].enfermedades);
           
           this.datosForm.markAsPristine();
           this.submited = true;
@@ -70,7 +70,7 @@ export class CentroComponent implements OnInit {
       this.datosForm.get('nombre').setValue('');
       this.datosForm.get('especialidad').setValue('');
       this.datosForm.get('ubicacion').setValue('');
-      //this.datosForm.get('enfermedades').setValue(''); 
+      this.datosForm.get('enfermedades').setValue(''); 
       this.datosForm.markAsPristine();
     }
 

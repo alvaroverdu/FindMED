@@ -2,6 +2,7 @@ const { response } = require('express');
 const { infoToken } = require('../helpers/infotoken');
 
 const Centro = require('../models/centros');
+const Enfermedad = require('../models/enfermedades');
 
 const sleep = (ms) => {
     return new Promise((resolve) => {
@@ -73,7 +74,7 @@ post /
 */
 const crearCentro = async(req, res = response) => {
 
-    const { nombre, especialidad } = req.body;
+    const { nombre, enfermedades } = req.body;
 
 
     try {
@@ -96,7 +97,26 @@ const crearCentro = async(req, res = response) => {
             });
         }
 
+        // Comprobamos la lista de alumnos que nos envían que existan
+        let listaenfermedadesinsertar = [];
+        // Si nos ha llegado lista de alumnos comprobar que existen y limpiar campos raros
+        if (enfermedades) {
+            await Promise.all(enfermedades.map(async(enfermedad) => {
+                const existeEnfermedad = await Enfermedad.findById(enfermedad);
+                if (!existeEnfermedad) {
+                    return res.status(400).json({
+                        ok: false,
+                        msg: 'Una de las enfermedades no existe'
+                    });
+                }
+                listaenfermedadesinsertar.push(existeEnfermedad);
+            }));
+            
+        }
+        
         const centro = new Centro(req.body);
+        centro.enfermedades = listaenfermedadesinsertar;
+
 
         // Almacenar en BD
         await centro.save();

@@ -109,4 +109,13 @@ export class CentrosComponent implements OnInit {
      });
  }
 
+ mostrarEnfermedades(enfermedades: Array<Enfermedad>){
+  let enfermedadString = '';
+  enfermedades.forEach(enfermedad => {
+    enfermedadString += enfermedad.nombre + ', ';
+  });
+  return enfermedadString.substring(0, enfermedadString.length - 2);
+  
+}
+
 }

@@ -47,7 +47,7 @@
                                 <td [routerLink]="['/admin/centros/centro', centro.uid]" class="micursor">{{centro.nombre}}</td>
                                 <td [routerLink]="['/admin/centros/centro', centro.uid]" class="micursor">{{centro.especialidad}}</td>
                                 <td [routerLink]="['/admin/centros/centro', centro.uid]" class="micursor">{{centro.ubicacion}}</td>
-                                <td [routerLink]="['/admin/centros/centro', centro.uid]" class="micursor">{{centro.enfermedades}}</td>
+                                <td [routerLink]="['/admin/centros/centro', centro.uid]" class="micursor">{{mostrarEnfermedades(centro.enfermedades)}}</td>
 
                                 <td class="text-center">
                                     <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" [routerLink]="['/admin/centros/centro', centro.uid]"></i>

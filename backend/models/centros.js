@@ -14,10 +14,13 @@ const CentroSchema = Schema({
         require: true
     },
     enfermedades: [{
-        enfermedad: {
-            type: Schema.Types.ObjectId,
-            ref: 'Enfermedad'
-        }
+        nombre:String,
+        descripcion:String,
+        tratamiento:String,
+        sintomas: [{
+            nombre:String,
+            descripcion:String
+        }]
     }]
 
 }, { collection: 'centros' });
