@@ -60,7 +60,7 @@
                             <span class="">Síntomas</span>
                         </div>
                         <div class="col-lg-8 col-md-12">
-                            <select class="form-control" [ngClass]="{'is-invalid' : campoNoValido('sintomas')}" formControlName="sintomas" multiple>
+                            <select class="form-control" [ngClass]="{'is-invalid' : campoNoValido('sintomas')}" formControlName="sintomas" multiple="multiple">
                                 <option *ngFor="let sintoma of sintomas" value="{{sintoma.uid}}">
                                     {{sintoma.nombre}}
                                 </option>
