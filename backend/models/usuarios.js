@@ -28,10 +28,15 @@ const UsuarioSchema = Schema({
     ubicacion: {
         type: String,
     },
-    enfermedades: {
-        type: Schema.Types.ObjectId,
-        ref: 'Curso'
-    },
+    enfermedades: [{
+        nombre:String,
+        descripcion:String,
+        tratamiento:String,
+        sintomas: [{
+            nombre:String,
+            descripcion:String
+        }]
+    }],
     alta: {
         type: Date,
         default: Date.now

@@ -41,7 +41,7 @@ export class SintomaComponent implements OnInit {
             return;
           };
           this.datosForm.get('nombre').setValue(res['sintomas'].nombre);
-          this.datosForm.get('descripcion').setValue(res['sintomas'].nombrecorto);
+          this.datosForm.get('descripcion').setValue(res['sintomas'].descripcion);
           this.datosForm.markAsPristine();
           this.submited = true;
         }, (err) => {
