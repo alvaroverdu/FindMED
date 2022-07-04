@@ -3,9 +3,11 @@
         <div class="card col-md-10">
             <div class="card-body">
                 <div>
-                    <button class="btn btn-info m-r-10" [disabled]="!datosForm.pristine" routerLink="/admin/enfermedades">Volver</button>
+                    <button class="btn btn-info m-r-10" [disabled]="!datosForm.pristine"
+                        routerLink="/admin/enfermedades">Volver</button>
                     <div class="float-right">
-                        <button class="btn btn-primary" [disabled]="(!datosForm.pristine || (esnuevo()))" (click)="nuevo()">Nuevo<i class="fa fa-plus m-l-10"></i></button>
+                        <button class="btn btn-primary" [disabled]="(!datosForm.pristine || (esnuevo()))"
+                            (click)="nuevo()">Nuevo<i class="fa fa-plus m-l-10"></i></button>
                     </div>
                 </div>
                 <form class="form-horizontal m-t-20" [formGroup]="datosForm" (ngSubmit)="enviar()">
@@ -22,7 +24,8 @@
                             <span class="">Nombre</span>
                         </div>
                         <div class="col-lg-8 col-md-12">
-                            <input type="text" class="form-control" formControlName="nombre" [ngClass]="{'is-invalid' : campoNoValido('nombre')}" id="nombre">
+                            <input type="text" class="form-control" formControlName="nombre"
+                                [ngClass]="{'is-invalid' : campoNoValido('nombre')}" id="nombre">
                             <div class="invalid-feedback">
                                 El campo es obligatorio
                             </div>
@@ -33,7 +36,8 @@
                             <span class="">Descripcion</span>
                         </div>
                         <div class="col-lg-8 col-md-12">
-                            <input type="text" class="form-control" formControlName="descripcion" [ngClass]="{'is-invalid' : campoNoValido('descripcion')}" id="descripcion">
+                            <input type="text" class="form-control" formControlName="descripcion"
+                                [ngClass]="{'is-invalid' : campoNoValido('descripcion')}" id="descripcion">
                             <div class="invalid-feedback">
                                 El campo es obligatorio
                             </div>
@@ -44,7 +48,8 @@
                             <span class="">Tratamiento</span>
                         </div>
                         <div class="col-lg-8 col-md-12">
-                            <input type="text" class="form-control" formControlName="tratamiento" [ngClass]="{'is-invalid' : campoNoValido('tratamiento')}" id="tratamiento">
+                            <input type="text" class="form-control" formControlName="tratamiento"
+                                [ngClass]="{'is-invalid' : campoNoValido('tratamiento')}" id="tratamiento">
                             <div class="invalid-feedback">
                                 El campo es obligatorio
                             </div>
@@ -54,12 +59,20 @@
                         <div class="col-lg-3 col-md-12 text-lg-right">
                             <span class="">Síntomas</span>
                         </div>
-
+                        <div class="col-lg-8 col-md-12">
+                            <select class="form-control" [ngClass]="{'is-invalid' : campoNoValido('sintomas')}" formControlName="sintomas" multiple>
+                                <option *ngFor="let sintoma of sintomas" value="{{sintoma.uid}}">
+                                    {{sintoma.nombre}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
                     <div class="d-flex justify-content-center m-t-10 ">
                         <div class="align-content-center ">
-                            <button class="btn btn-primary m-r-20 " type="submit" id="enviar" [disabled]="datosForm.pristine">Enviar</button>
-                            <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="datosForm.pristine">Cancelar</button>
+                            <button class="btn btn-primary m-r-20 " type="submit" id="enviar"
+                                [disabled]="datosForm.pristine">Enviar</button>
+                            <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar"
+                                [disabled]="datosForm.pristine">Cancelar</button>
                         </div>
                     </div>
                 </form>

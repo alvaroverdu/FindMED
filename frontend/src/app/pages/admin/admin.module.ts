@@ -20,6 +20,11 @@ import { EnfermedadesComponent } from './enfermedades/enfermedades.component';
 import { EnfermedadComponent } from './enfermedad/enfermedad.component';
 import { CentrosComponent } from './centros/centros.component';
 import { CentroComponent } from './centro/centro.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+
 
 
 @NgModule({
@@ -57,6 +62,11 @@ import { CentroComponent } from './centro/centro.component';
     FormsModule,
     ReactiveFormsModule,
     CommonsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+
   ]
 })
 export class AdminModule { }

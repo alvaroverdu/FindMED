@@ -47,7 +47,7 @@
                                 <td [routerLink]="['/admin/enfermedades/enfermedad', enfermedad.uid]" class="micursor">{{enfermedad.nombre}}</td>
                                 <td [routerLink]="['/admin/enfermedades/enfermedad', enfermedad.uid]" class="micursor">{{enfermedad.descripcion}}</td>
                                 <td [routerLink]="['/admin/enfermedades/enfermedad', enfermedad.uid]" class="micursor">{{enfermedad.tratamiento}}</td>
-                                <td [routerLink]="['/admin/enfermedades/enfermedad', enfermedad.uid]" class="micursor">{{enfermedad.sintomas}}</td>
+                                <td [routerLink]="['/admin/enfermedades/enfermedad', enfermedad.uid]" class="micursor">{{mostrarSintomas(enfermedad.sintomas)}}</td>
 
                                 <td class="text-center">
                                     <i class="fa fa-pencil-alt text-success fa-lg mr-5 micursor" [routerLink]="['/admin/enfermedades/enfermedad', enfermedad.uid]"></i>

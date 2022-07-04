@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+
 const EnfermedadSchema = Schema({
     nombre: {
         type: String,
@@ -12,10 +13,8 @@ const EnfermedadSchema = Schema({
         type: String
     },
     sintomas: [{
-        sintoma: {
-            type: Schema.Types.ObjectId,
-            ref: 'Sintoma'
-        }
+        nombre:String,
+        descripcion:String
     }]
 
 }, { collection: 'enfermedades' });

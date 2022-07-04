@@ -1,6 +1,8 @@
 const { response } = require('express');
 
 const Enfermedad= require('../models/enfermedades');
+const Sintoma= require('../models/sintomas');
+
 
 const { infoToken } = require('../helpers/infotoken');
 
@@ -91,23 +93,17 @@ const crearEnfermedad = async(req, res = response) => {
         let listasintomasinsertar = [];
         // Si nos ha llegado lista de alumnos comprobar que existen y limpiar campos raros
         if (sintomas) {
-            let listasintomasbusqueda = [];
-            // Convertimos el array de objetos en un array con los strings de id de usuario
-            // Creamos un array de objetos pero solo con aquellos que tienen el campo usuario correcto
-            const listaalu = sintomas.map(registro => {
-                if (registro.sintoma) {
-                    listasintomasbusqueda.push(registro.sintoma);
-                    listasintomasinsertar.push(registro);
+            await Promise.all(sintomas.map(async(sintoma) => {
+                const existeSintoma = await Sintoma.findById(sintoma);
+                if (!existeSintoma) {
+                    return res.status(400).json({
+                        ok: false,
+                        msg: 'Uno de los sintomas no existe'
+                    });
                 }
-            });
-            // Comprobamos que los alumnos que nos pasan existen, buscamos todos los alumnos de la lista
-            const existeSintomas = await Sintoma.find().where('_id').in(listasintomasbusqueda);
-            if (existeSintomas.length != listasintomasbusqueda.length) {
-                return res.status(400).json({
-                    ok: false,
-                    msg: 'Alguno de los sintomas indicados en la enfermedad no existe o están repetidos'
-                });
-            }
+                listasintomasinsertar.push(existeSintoma);
+            }));
+            
         }
 
         const enfermedad = new Enfermedad(req.body);
@@ -160,27 +156,22 @@ const actualizarEnfermedad = async(req, res) => {
        let listasintomasinsertar = [];
        // Si nos ha llegado lista de alumnos comprobar que existen y limpiar campos raros
        if (sintomas) {
-           let listasintomasbusqueda = [];
-           // Convertimos el array de objetos en un array con los strings de id de usuario
-           // Creamos un array de objetos pero solo con aquellos que tienen el campo usuario correcto
-           const listaalu = sintomas.map(registro => {
-               if (registro.sintoma) {
-                   listasintomasbusqueda.push(registro.sintoma);
-                   listaalumnosinsertar.push(registro);
+           await Promise.all(sintomas.map(async(sintoma) => {
+               const existeSintoma = await Sintoma.findById(sintoma);
+               if (!existeSintoma) {
+                   return res.status(400).json({
+                       ok: false,
+                       msg: 'Uno de los sintomas no existe'
+                   });
                }
-           });
-           // Comprobamos que los alumnos que nos pasan existen, buscamos todos los alumnos de la lista
-           const existeSintomas = await Sintoma.find().where('_id').in(listasintomasbusqueda);
-           if (existeSintomas.length != listasintomasbusqueda.length) {
-               return res.status(400).json({
-                   ok: false,
-                   msg: 'Alguno de los sintomas indicados en la enfermedad no existe o están repetidos'
-               });
-           }
+               listasintomasinsertar.push(existeSintoma);
+           }));
+           
        }
 
+
        let object = req.body;
-       object.sintomas = listaalumnosinsertar;
+       object.sintomas = listasintomasinsertar;
 
         const enfermedad = await Enfermedad.findByIdAndUpdate(uid, object, { new: true });
         res.json({

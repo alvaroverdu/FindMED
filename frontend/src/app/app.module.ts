@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { DragulaModule} from 'ng2-dragula';
+import { DragulaModule } from 'ng2-dragula';
 
 import { AuthModule } from './auth/auth.module';
 

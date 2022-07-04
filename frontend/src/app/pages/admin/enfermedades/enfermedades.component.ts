@@ -105,4 +105,13 @@ export class EnfermedadesComponent implements OnInit {
      });
  }
 
+ mostrarSintomas(sintomas: Array<Sintoma>){
+    let sintomasString = '';
+    sintomas.forEach(sintoma => {
+      sintomasString += sintoma.nombre + ', ';
+    });
+    return sintomasString.substring(0, sintomasString.length - 2);
+    
+ }
+
 }
