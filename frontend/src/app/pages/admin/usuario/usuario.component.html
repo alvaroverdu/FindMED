@@ -50,6 +50,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Edad</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="text" class="form-control " formControlName="edad" [ngClass]="{'is-invalid' : campoNoValido('edad')}" id="edad">
+                            <div class="invalid-feedback">
+                                El campo es obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Ubicación</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="text" class="form-control " formControlName="ubicacion" [ngClass]="{'is-invalid' : campoNoValido('ubicacion')}" id="ubicacion">
+                            <div class="invalid-feedback">
+                                El campo es obligatorio
+                            </div>
+                        </div>
+                    </div>
 
                     <div class=" row m-t-10 ">
                         <div class="col-lg-3 col-md-12 text-lg-right ">

@@ -21,6 +21,8 @@ export class UsuarioComponent implements OnInit {
     email: [ '', [Validators.required, Validators.email] ],
     nombre: ['', Validators.required ],
     password: ['', Validators.required ],
+    edad: ['', Validators.required ],
+    ubicacion: ['', Validators.required ],
     rol: ['ROL_USUARIO', Validators.required ],
     activo: [true, Validators.required ],
   });
@@ -76,6 +78,8 @@ export class UsuarioComponent implements OnInit {
     this.datosForm.get('uid').setValue(res['usuarios'].uid);
     this.datosForm.get('nombre').setValue(res['usuarios'].nombre);
     this.datosForm.get('email').setValue(res['usuarios'].email);
+    this.datosForm.get('rol').setValue(res['usuarios'].edad);
+    this.datosForm.get('rol').setValue(res['usuarios'].ubicacion);
     this.datosForm.get('rol').setValue(res['usuarios'].rol);
     this.datosForm.get('activo').setValue(res['usuarios'].activo);
     this.datosForm.get('password').setValue('1234');

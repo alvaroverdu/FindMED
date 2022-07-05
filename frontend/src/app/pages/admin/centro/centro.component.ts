@@ -77,7 +77,7 @@ export class CentroComponent implements OnInit {
   }
 
   cargarEnfermedades() {
-    // cargamos todos los cursos
+    // cargamos todos las enfermedades
     this.enfermedadService.cargarEnfermedades(0, '','todos')
       .subscribe( res => {
         this.enfermedades = res['enfermedades'];

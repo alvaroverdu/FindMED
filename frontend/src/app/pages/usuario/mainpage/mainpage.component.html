@@ -5,25 +5,33 @@
     <div class="card mb-4 border-0" style="margin:auto; width: 15rem; ">
         <div class="card-body">
           <h5 style="color: #93af56;"class="card-title">Indique su síntoma principal y se procederá a realizar la búsqueda</h5>
-          <form class="form-horizontal m-t-20" id="busquedaForm" [formGroup]="busquedaForm">
+          <form class="form-horizontal m-t-20" id="busquedaForm" [formGroup]="busquedaForm" (ngSubmit)="buscar()">
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-success1 text-white" id="basic-addon1"></span>
                         </div>
-                        <input type="text" class="form-control form-control-lg campo-login" formControlName="busqueda" placeholder="" aria-label="Username" aria-describedby="basic-addon1" required="">
+                        <input type="text" class="form-control form-control-lg campo-login" formControlName="sintoma" placeholder="" aria-label="Username" aria-describedby="basic-addon1" required="">
                     </div>
                 </div>
             </div>
           <div class="col-12">
             <div class="form-group">
                 <div class="p-t-20">
-                    <button class="btn btn-info volver-login" id="to-recover" type="button" routerLink="/hola"><i class="fa fa-search"></i>  Buscar</button>
+                    <button class="btn btn-info volver-login" id="to-recover" type="submit"><i class="fa fa-search"></i>  Buscar</button>
                 </div>
             </div>
         </div>
     </form>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <div class="p-t-20">
+                        <h1>{{mostrarPosiblesEnfermedades()}}</h1>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
 </div>

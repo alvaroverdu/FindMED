@@ -38,6 +38,8 @@
                                 <th>Foto</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
+                                <th>Edad</th>
+                                <th>Ubicación</th>
                                 <th>Rol</th>
                                 <th>Alta</th>
                                 <th class="text-center">Activo</th>
@@ -51,6 +53,8 @@
                                 </td>
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.nombre}}</td>
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.email}}</td>
+                                <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.edad}}</td>
+                                <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.ubicacion}}</td>
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.rol}}</td>
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.alta | date : 'dd/MM/yyyy'}}</td>
                                 <td class="text-center" [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">
