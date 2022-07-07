@@ -151,7 +151,12 @@ const routes: Routes = [
     children: [
     { path: 'mainpage', component: MainpageComponent, canActivate: [ AuthGuard ], data: { 
                                                         rol:'ROL_USUARIO',
-                                                        titulo: 'Dashboard Alumno',
+                                                        titulo: 'Inicio Usuario',
+                                                        breadcrums: []
+                                                      },},
+    { path: 'info_enfermedad/:uid', component: MainpageComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol:'ROL_USUARIO',
+                                                        titulo: 'Info Enfermedades',
                                                         breadcrums: []
                                                       },},
     { path: '**', redirectTo: 'dashboard'}

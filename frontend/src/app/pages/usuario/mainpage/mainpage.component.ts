@@ -23,6 +23,7 @@ export class MainpageComponent implements OnInit {
   public sintomas: Sintoma[] = [];
   public enfermedades: Enfermedad[] = [];
   public listaenfermedadesposibles: Enfermedad[] = [];
+  public buscado: boolean;
 
 
   constructor(private fb: FormBuilder,
@@ -34,7 +35,7 @@ export class MainpageComponent implements OnInit {
   ngOnInit(): void {
     this.cargarSintomas();
     this.cargarEnfermedades();
-
+    this.buscado=false;
 
   }
 
@@ -50,7 +51,7 @@ export class MainpageComponent implements OnInit {
       });
       console.log(this.listaenfermedadesposibles);
     });
-
+    this.buscado=true;
 
   }
 
@@ -81,6 +82,23 @@ export class MainpageComponent implements OnInit {
     
   }
 
+  comprobarEnfermedades(){
+    if(this.listaenfermedadesposibles.length !== 0){
+     return true;
+    }
+    else{
+      return false;
+    }
+  }
 
+
+  mostrarSintomas(sintomas: Array<Sintoma>){
+    let sintomasString = '';
+    sintomas.forEach(sintoma => {
+      sintomasString += sintoma.nombre + ', ';
+    });
+    return sintomasString.substring(0, sintomasString.length - 2);
+    
+ }
 
 }
