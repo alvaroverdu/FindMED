@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SintomaService } from '../../../services/sintoma.service';
+import { Sintoma } from 'src/app/models/sintoma.model';
 import { EnfermedadService } from 'src/app/services/enfermedad.service';
-import { Enfermedad } from 'src/app/models/enfermedad.model';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
-@Component({
-  selector: 'app-info-enfermedad',
-  templateUrl: './info-enfermedad.component.html',
-  styleUrls: ['./info-enfermedad.component.css']
-})
-export class InfoEnfermedadComponent implements OnInit {
 
-  public enfermedad: Enfermedad;
-  public uidEnfermedad: string = '';
+@Component({
+  selector: 'app-info-sintoma',
+  templateUrl: './info-sintoma.component.html',
+  styleUrls: ['./info-sintoma.component.css']
+})
+export class InfoSintomaComponent implements OnInit {
+
+  public sintoma: Sintoma;
+  public uidSintoma: string = '';
 
   public cargando: boolean = false;
 
@@ -26,25 +27,22 @@ export class InfoEnfermedadComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.uidEnfermedad = this.route.snapshot.params['uid'];
-    this.cargarEnfermedad(this.uidEnfermedad);
+    this.uidSintoma = this.route.snapshot.params['uid'];
+    this.cargarSintoma(this.uidSintoma);
   }
 
 
-  cargarEnfermedad(uidEnfermedad){
+  cargarSintoma(uidSintoma){
     this.cargando = true;
-    this.enfermedadService.cargarEnfermedad(uidEnfermedad)
+    this.sintomaService.cargarSintoma(uidSintoma)
       .subscribe(res => {
         this.cargando = false;
-        this.enfermedad = res['enfermedades'];
+        this.sintoma = res['sintomas'];
       }, (err) => {
         this.cargando = false;
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
         return;
       }	);	
   }
-
-
-
 
 }

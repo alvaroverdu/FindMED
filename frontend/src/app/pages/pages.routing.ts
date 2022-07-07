@@ -26,6 +26,8 @@ import { CentrosComponent } from './admin/centros/centros.component';
 import { CentroComponent } from './admin/centro/centro.component';
 import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.component';
 import { MainpageComponent } from './usuario/mainpage/mainpage.component';
+import { InfoEnfermedadComponent } from './usuario/info-enfermedad/info-enfermedad.component';
+import { InfoSintomaComponent } from './usuario/info-sintoma/info-sintoma.component';
 
 
 /*
@@ -154,9 +156,14 @@ const routes: Routes = [
                                                         titulo: 'Inicio Usuario',
                                                         breadcrums: []
                                                       },},
-    { path: 'info_enfermedad/:uid', component: MainpageComponent, canActivate: [ AuthGuard ], data: { 
+    { path: 'info_enfermedad/:uid', component: InfoEnfermedadComponent, canActivate: [ AuthGuard ], data: { 
                                                         rol:'ROL_USUARIO',
-                                                        titulo: 'Info Enfermedades',
+                                                        titulo: 'Info enfermedades',
+                                                        breadcrums: []
+                                                      },},
+    { path: 'info_sintoma', component: InfoSintomaComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol:'ROL_USUARIO',
+                                                        titulo: 'Info sintomas',
                                                         breadcrums: []
                                                       },},
     { path: '**', redirectTo: 'dashboard'}
