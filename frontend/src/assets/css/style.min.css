@@ -11344,7 +11344,7 @@ ul.list-style-none li a:hover {
     -webkit-box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.05);
     box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.05);
     background: #fff;
-    height: 64px
+    /*height: 64px*/
 }
 
 .topbar .navbar-collapse {

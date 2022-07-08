@@ -100,4 +100,8 @@ export class PerfilComponent implements OnInit {
     return !(this.datosPassword.get('nuevopassword').value === this.datosPassword.get('nuevopassword2').value) && this.sendpass;
   }
 
+  logout() {
+    this.usuarioService.logout();
+  }
+
 }
