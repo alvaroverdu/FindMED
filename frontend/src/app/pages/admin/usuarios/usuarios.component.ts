@@ -55,9 +55,6 @@ export class UsuariosComponent implements OnInit {
       });
   }
 
-  crearImagenUrl(imagen: string) {
-    return this.ususuarioService.crearImagenUrl(imagen);
-  }
 
   cambiarPagina( pagina: number ){
     pagina = (pagina < 0 ? 0 : pagina);

@@ -166,7 +166,7 @@ const routes: Routes = [
                                                         titulo: 'Info sintomas',
                                                         breadcrums: []
                                                       },},
-    { path: '**', redirectTo: 'dashboard'}
+    { path: '**', redirectTo: 'mainpage'}
   ]},
 
 

@@ -36,7 +36,6 @@ const token = async(req, res = response) => {
             enfermedades: usuarioBD.enfermedades,
             alta: usuarioBD.alta,
             activo: usuarioBD.activo,
-            imagen: usuarioBD.imagen,
             token: nuevoToken
         });
     } catch {

@@ -16300,9 +16300,11 @@ span>.logo-text {
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
 }
 
-#cancelar {
+#cancelar #enviar {
     margin-bottom: 70px !important;
 }
+
+
 
 
 /*-----------------------RECUPERAR CONTRASENYA-----------------------*/

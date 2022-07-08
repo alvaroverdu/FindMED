@@ -45,7 +45,7 @@
                         <tr *ngFor="let enfermedad of listaenfermedadesposibles">
                             <td class="micursor" style="font-weight: bold;">{{enfermedad.nombre}}</td>
                             <td [routerLink]="" class="micursor">{{mostrarSintomas(enfermedad.sintomas)}}</td>
-                            <td><button class="btn btn-success" [routerLink]="['/info_enfermedad', enfermedad.uid]"><i class="fa fa-plus"></i>   Info</button></td>
+                            <td><button class="btn btn-success" (click)="irAlaEnfermedad(enfermedad.uid);"><i class="fa fa-plus"></i>   Info</button></td>
                         </tr>
                     </tbody>
                 </table>

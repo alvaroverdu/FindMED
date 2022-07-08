@@ -7,6 +7,8 @@ import { Sintoma } from 'src/app/models/sintoma.model';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Enfermedad } from 'src/app/models/enfermedad.model';
+import {Location} from '@angular/common';
+
 
 
 @Component({
@@ -30,6 +32,7 @@ export class MainpageComponent implements OnInit {
     private usuarioService: UsuarioService,
     private sintomaService: SintomaService,
     private enfermedadService: EnfermedadService,
+    private location: Location,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -100,5 +103,13 @@ export class MainpageComponent implements OnInit {
     return sintomasString.substring(0, sintomasString.length - 2);
     
  }
+
+ irAlaEnfermedad(enfermedad: String ){
+  this.router.navigateByUrl('/usuario/info_enfermedad/' + enfermedad);
+ }
+
+ volver() {
+  this.location.back();
+}
 
 }

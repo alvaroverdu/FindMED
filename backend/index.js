@@ -27,7 +27,6 @@ app.use('/api/grupos', require('./routes/grupos'));
 app.use('/api/cursos', require('./routes/cursos'));
 app.use('/api/asignaturas', require('./routes/asignaturas'));
 app.use('/api/items', require('./routes/items'));
-app.use('/api/upload', require('./routes/uploads'));
 app.use('/api/enfermedades', require('./routes/enfermedades'));
 app.use('/api/sintomas', require('./routes/sintomas'));
 app.use('/api/centros', require('./routes/centros'));

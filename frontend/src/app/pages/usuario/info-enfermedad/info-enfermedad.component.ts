@@ -28,6 +28,7 @@ export class InfoEnfermedadComponent implements OnInit {
   ngOnInit(): void {
     this.uidEnfermedad = this.route.snapshot.params['uid'];
     this.cargarEnfermedad(this.uidEnfermedad);
+    console.log(this.enfermedad.nombre);
   }
 
 

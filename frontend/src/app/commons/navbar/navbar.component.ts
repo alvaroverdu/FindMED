@@ -8,15 +8,9 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class NavbarComponent implements OnInit {
 
-  imagenUrl: string = '';
-
   constructor( private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
-    this.usuarioService.cargarUsuario( this.usuarioService.uid )
-      .subscribe( res => {
-        this.imagenUrl = this.usuarioService.imagenURL;
-      });
   }
 
   logout() {

@@ -35,7 +35,6 @@
                     <table id="tabla_usuarios" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Foto</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Edad</th>
@@ -48,9 +47,6 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let usuario of listaUsuarios">
-                                <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor micelda text-center">
-                                    <img [src]="crearImagenUrl(usuario.imagen)" width="30px" class="rounded-circle fotoperfilimg">
-                                </td>
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.nombre}}</td>
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.email}}</td>
                                 <td [routerLink]="['/admin/usuarios/usuario', usuario.uid]" class="micursor">{{usuario.edad}}</td>

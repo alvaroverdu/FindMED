@@ -13,18 +13,16 @@ import { Subscription } from 'rxjs';
 })
 export class PerfilComponent implements OnInit {
 
-  public imagenUrl = '';
-  public foto: File = null;
   public subs$: Subscription = new Subscription();
   public sendpass = false;
   public showOKP = false;
   public showOKD = false;
-  public fileText = 'Seleccione archivo';
 
   public datosForm = this.fb.group({
     email: [ '', [Validators.required, Validators.email] ],
     nombre: ['', Validators.required ],
-    imagen: ['']
+    edad: ['', Validators.required ],
+    ubicacion: ['', Validators.required ],
   });
 
   public datosPassword = this.fb.group({
@@ -65,23 +63,8 @@ export class PerfilComponent implements OnInit {
     // Actualizamos los datos del formulario y si va bien actualizamos foto
     this.usuarioService.actualizarUsuario( this.usuarioService.uid, this.datosForm.value )
     .subscribe( res => {
-      this.usuarioService.establecerdatos( res['usuario'].nombre,res['usuario'].email );
+      this.usuarioService.establecerdatos( res['usuario'].nombre,res['usuario'].email,res['usuario'].edad,res['usuario'].ubicacion );
 
-      // Si la actualización de datos ha ido bien, entonces actualizamso foto si hay
-      if (this.foto ) {
-        this.usuarioService.subirFoto( this.usuarioService.uid, this.foto)
-        .subscribe( res => {
-          // Cambiamos la foto del navbar, para eso establecemos la imagen (el nombre de archivo) en le servicio
-          this.usuarioService.establecerimagen(res['nombreArchivo']);
-          // cambiamos el DOM el objeto que contiene la foto
-          document.getElementById('fotoperfilnavbar').setAttribute('src', this.usuarioService.imagenURL);
-        }, (err) => {
-          const errtext = err.error.msg || 'No se pudo cargar la imagen';
-          Swal.fire({icon: 'error', title: 'Oops...', text: errtext});
-          return;
-        });
-      }
-      this.fileText = 'Seleccione archivo';
       this.datosForm.markAsPristine(); // marcamos reiniciado de cambios
       this.showOKD = true;
     }, (err) => {
@@ -90,46 +73,12 @@ export class PerfilComponent implements OnInit {
     });
   }  
 
-  // Precargar la imagen en la vista
-  cambioImagen( evento ): void {
-    if (evento.target.files && evento.target.files[0]) {
-      // Comprobamos si es una imagen jpg, jpet, png
-      const extensiones = ['jpeg','jpg','png'];
-      const nombre: string = evento.target.files[0].name;
-      const nombrecortado: string[] = nombre.split('.');
-      const extension = nombrecortado[nombrecortado.length - 1];
-      if (!extensiones.includes(extension)) {
-        // Si no teniamos ningúna foto ya seleccionada antes, dejamos el campo pristine
-        if (this.foto === null) {
-          this.datosForm.get('imagen').markAsPristine();
-          console.log(this.datosForm);
-        }
-        Swal.fire({icon: 'error', title: 'Oops...', text: 'El archivo debe ser una imagen jpeg, jpg o png'});
-        return;
-      }
-
-      let reader = new FileReader();
-      // cargamos el archivo en la variable foto que servirá para enviarla al servidor
-      this.foto = evento.target.files[0];
-      // leemos el archivo desde el dispositivo
-      reader.readAsDataURL(evento.target.files[0]); 
-      // y cargamos el archivo en la imagenUrl que es lo que se inserta en el src de la imagen
-      reader.onload = (event) => { 
-        this.imagenUrl = event.target.result.toString();
-        this.fileText = nombre;
-      };
-    } else {
-      console.log('no llega target:', event);
-    }
-  }
   // Recupera los datos del usuario
   cargarUsuario():void {
     this.datosForm.get('nombre').setValue(this.usuarioService.nombre);
     this.datosForm.get('email').setValue(this.usuarioService.email);
-    this.datosForm.get('imagen').setValue('');
-    this.imagenUrl = this.usuarioService.imagenURL;
-    this.foto = null;
-    this.fileText = 'Seleccione archivo';
+    this.datosForm.get('edad').setValue(this.usuarioService.edad);
+    this.datosForm.get('ubicacion').setValue(this.usuarioService.ubicacion);
     this.datosForm.markAsPristine();
   }
 

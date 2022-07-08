@@ -92,9 +92,9 @@ export class UsuarioService {
       .pipe(
         tap( (res: any) => {
           // extaemos los datos que nos ha devuelto y los guardamos en el usurio y en localstore
-          const { uid, nombre, email, rol, alta, edad, enfermedades, activo, imagen, token} = res;
+          const { uid, nombre, email, rol, edad, alta, enfermedades, activo, ubicacion, token } = res;
           localStorage.setItem('token', token);
-          this.usuario = new Usuario(uid, rol, nombre, email, alta, edad, enfermedades, activo, imagen);
+          this.usuario = new Usuario(uid, rol, nombre, email, edad, ubicacion, enfermedades, alta,activo);
         }),
         map ( res => {
           return correcto;
@@ -122,19 +122,13 @@ export class UsuarioService {
     this.usuario.imagen = nueva;
   }
 
-  establecerdatos(nombre: string,email: string): void {
+  establecerdatos(nombre: string,email: string, ubicacion:string, edad:number): void {
     this.usuario.nombre = nombre;
     this.usuario.email = email;
+    this.usuario.ubicacion = ubicacion;
+    this.usuario.edad = edad;
   }
   
-  crearImagenUrl( imagen: string) {
-
-    const token = localStorage.getItem('token') || '';
-    if (!imagen) {
-      return `${environment.base_url}/upload/fotoperfil/no-imagen?token=${token}`; 
-    }
-    return `${environment.base_url}/upload/fotoperfil/${imagen}?token=${token}`;
-  }
 
   recuperarPassword(data){
     return this.http.post(`${environment.base_url}/usuarios/recovery`, data, this.cabeceras);
@@ -179,12 +173,12 @@ export class UsuarioService {
     return this.usuario.enfermedades;
   }
 
-  get imagen(): string{
-    return this.usuario.imagen;
+  getEdad(): number{
+    return this.usuario.edad;
   }
-  
-  get imagenURL(): string{
-    return this.usuario.imagenUrl;
+
+  getAlta(): Date{
+    return this.usuario.alta;
   }
 
   
