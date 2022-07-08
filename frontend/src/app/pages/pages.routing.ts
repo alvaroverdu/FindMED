@@ -40,13 +40,7 @@ import { InfoSintomaComponent } from './usuario/info-sintoma/info-sintoma.compon
 */
 
 const routes: Routes = [
-  { path: 'perfil', component: AdminLayoutComponent, canActivate: [ AuthGuard ], data: {rol: '*'},
-    children: [
-      { path: '', component: PerfilComponent, data: { 
-                                    titulo: 'Perfil',
-                                    breadcrums: []
-                                  },},
-    ]},
+
   { path: 'admin', component: AdminLayoutComponent, canActivate: [ AuthGuard], data: {rol: 'ROL_ADMIN'}, 
     children: [
     { path: 'dashboard', component: DashboardComponent, canActivate: [ AuthGuard ], data: { 
@@ -164,6 +158,11 @@ const routes: Routes = [
     { path: 'info_sintoma', component: InfoSintomaComponent, canActivate: [ AuthGuard ], data: { 
                                                         rol:'ROL_USUARIO',
                                                         titulo: 'Info sintomas',
+                                                        breadcrums: []
+                                                      },},
+    { path: 'perfil', component: PerfilComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol:'ROL_USUARIO',
+                                                        titulo: 'Info perfil',
                                                         breadcrums: []
                                                       },},
     { path: '**', redirectTo: 'mainpage'}

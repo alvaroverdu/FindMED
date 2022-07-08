@@ -85,15 +85,10 @@
                 <!-- ============================================================== -->
                 <!-- User profile -->
                 <!-- ============================================================== -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <p style="color: white;">Mi perfil</p></a>
-                    <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                        <a class="dropdown-item" routerLink="/perfil"><i class="fa fa-address-card m-r-5 m-l-5"></i> Mi Perfil</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item micursor" (click)="logout()"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                    </div>
-                </li>
+                <a class="nav-item justify-content-center" (click)="logout()">
+                    <p class="nav-link" style="color: white;">Cerrar sesión</p>
+                </a>
+                
                 <!-- ============================================================== -->
                 <!-- User profile and search -->
                 <!-- ============================================================== -->

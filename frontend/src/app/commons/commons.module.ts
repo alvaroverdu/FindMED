@@ -30,6 +30,7 @@ import { NavbaruserComponent } from './navbaruser/navbaruser.component';
     PaginationComponent,
     ProgressbarComponent,
     SelectusersComponent,
+    NavbaruserComponent,
   ],
   imports: [
     CommonModule,
