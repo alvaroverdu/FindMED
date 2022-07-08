@@ -5,6 +5,7 @@ export class Sintoma {
         public nombre: string,
         public descripcion: string,
         public uid?: string,
+        public _id?: string
     )
     {}
 

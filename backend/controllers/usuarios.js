@@ -240,7 +240,7 @@ const sendRecoverPassword = async(req, res = response) => {
                 }
                 // Envíamos el email vía nodemailer al usuario
                 var transporter = nodemailer.createTransport({ service: 'Gmail', auth: { user: 'alvaroverdpina@gmail.com', pass: 'Alvaro2022' } });
-                var mailOptions = { from: 'alvaroverdpina@gmail.com', to: usuario.email, subject: 'Recuperación de contraseña - Moony', text: 'Muy buenas,\n\n' + 'Por favor clique en el siguiente enlace para recuperar su contraseña: \nhttps:\/\/' + process.env.HOSTX + '\/recuperar-password\/' + usuario.tokenRecovery };
+                var mailOptions = { from: 'alvaroverdpina@gmail.com', to: usuario.email, subject: 'Recuperación de contraseña - FindMED', text: 'Muy buenas,\n\n' + 'Por favor clique en el siguiente enlace para recuperar su contraseña: \nhttps:\/\/' + process.env.HOSTX + '\/recuperar-password\/' + usuario.tokenRecovery };
                 transporter.sendMail(mailOptions, function(err) {
                     // Si hay algún error en el envío devolvemos un error 500
                     if (err) {

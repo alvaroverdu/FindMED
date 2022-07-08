@@ -7,6 +7,7 @@ export class Enfermedad {
         public tratamiento: string,
         public sintomas?: Sintoma[],
         public uid?: string,
+        public _id?: string
     )
     {}
 }

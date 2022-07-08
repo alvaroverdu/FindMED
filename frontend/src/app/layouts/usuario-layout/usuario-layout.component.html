@@ -1,4 +1,9 @@
 <app-navbaruser></app-navbaruser>
+<div class="row">
+        <div class="col-12">
+                <button *ngIf="comprobarUrlInicio()===false" type="button" class="btn btn-info volver-login" style="width: 10rem; margin-top: 3rem; margin-left: 1rem; background-color: #93af56;" (click)="irAtras();"><i class="fa fa-arrow-left"></i>     Volver</button>
+        </div>
+</div>
 <div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
         <router-outlet></router-outlet>
 </div>

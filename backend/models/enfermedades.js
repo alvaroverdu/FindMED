@@ -14,7 +14,7 @@ const EnfermedadSchema = Schema({
     },
     sintomas: [{
         nombre:String,
-        descripcion:String
+        descripcion:String,
     }]
 
 }, { collection: 'enfermedades' });

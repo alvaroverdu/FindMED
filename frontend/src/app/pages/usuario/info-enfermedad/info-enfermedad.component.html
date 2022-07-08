@@ -1,13 +1,23 @@
-
-<div class="container">
-    <div class="row">
-        <div class="card">
-            <div class="card-title">
-                <h1>{{this.enfermedad.nombre}}</h1>
-            </div>
-            <div class="card-body">
-                <p>{{this.enfermedad.descripcion}}</p>
-            </div>
+<div class="row justify-content-center">
+    <div class="col-8 justify-content-center">
+<div style="border-radius: 1rem;"class="card">
+    <h1 style="background-color: #5da0a2; color: white;"class="card-header">{{this.enfermedad.nombre}}</h1>
+    <div class="card-body" style="margin: 1rem;">
+        <div style="border-bottom: solid; border-width: 0.1rem; border-color: #93af56;"class="cuadro">
+            <h5 class="card-title verde">Descripcion</h5>
+            <p style="margin-bottom: 1rem;"class="text-center p-t-20 p-b-20 justify-content-center">{{this.enfermedad.descripcion}}</p>
+        </div>
+        <div style="border-bottom: solid; border-width: 0.1rem; border-color: #93af56;"class="cuadro">
+            <h5 class="card-title verde">Tratamiento</h5>
+            <p style="margin-bottom: 1rem;"class="text-center p-t-20 p-b-20 justify-content-center">{{this.enfermedad.tratamiento}}</p>
+        </div>
+        <div style="border-bottom: solid; border-width: 0.1rem; border-color: #93af56;"class="cuadro">
+            <h5 class="card-title verde">Síntomas</h5>
+            <li class="text-center p-t-20 p-b-20 justify-content-center" *ngFor="let sintoma of this.enfermedad.sintomas">
+                <a (click)="irAlSintoma(sintoma._id)">{{sintoma.nombre}}</a>
+            </li>        
         </div>
     </div>
+</div>
+</div>
 </div>

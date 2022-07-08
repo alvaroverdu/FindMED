@@ -4,6 +4,7 @@ import { AuthGuard } from '../guards/auth.guard';
 
 import { AdminLayoutComponent } from '../layouts/admin-layout/admin-layout.component';
 import { UsuarioLayoutComponent } from '../layouts/usuario-layout/usuario-layout.component';
+import { InfoLayoutComponent } from '../layouts/info-layout/info-layout.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UsuariosComponent } from './admin/usuarios/usuarios.component';
 import { UsuarioComponent } from './admin/usuario/usuario.component';
@@ -28,6 +29,7 @@ import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.componen
 import { MainpageComponent } from './usuario/mainpage/mainpage.component';
 import { InfoEnfermedadComponent } from './usuario/info-enfermedad/info-enfermedad.component';
 import { InfoSintomaComponent } from './usuario/info-sintoma/info-sintoma.component';
+import { InfoCentroComponent } from './usuario/info-centro/info-centro.component';
 
 
 /*
@@ -155,9 +157,14 @@ const routes: Routes = [
                                                         titulo: 'Info enfermedades',
                                                         breadcrums: []
                                                       },},
-    { path: 'info_sintoma', component: InfoSintomaComponent, canActivate: [ AuthGuard ], data: { 
+    { path: 'info_sintoma/:uid', component: InfoSintomaComponent, canActivate: [ AuthGuard ], data: { 
                                                         rol:'ROL_USUARIO',
                                                         titulo: 'Info sintomas',
+                                                        breadcrums: []
+                                                      },},
+    { path: 'info_centro/:uid', component: InfoCentroComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol:'ROL_USUARIO',
+                                                        titulo: 'Info centros',
                                                         breadcrums: []
                                                       },},
     { path: 'perfil', component: PerfilComponent, canActivate: [ AuthGuard ], data: { 

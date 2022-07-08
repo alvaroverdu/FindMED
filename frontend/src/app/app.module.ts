@@ -9,11 +9,13 @@ import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { CommonsModule } from './commons/commons.module';
 import { UsuarioLayoutComponent } from './layouts/usuario-layout/usuario-layout.component';
+import { InfoLayoutComponent } from './layouts/info-layout/info-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsuarioLayoutComponent,
+    InfoLayoutComponent,
   ],
   imports: [
     BrowserModule,

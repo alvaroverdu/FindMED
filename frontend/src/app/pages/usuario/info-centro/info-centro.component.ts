@@ -2,42 +2,45 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SintomaService } from '../../../services/sintoma.service';
 import { EnfermedadService } from 'src/app/services/enfermedad.service';
+import { CentroService } from 'src/app/services/centro.service';
+import { CentroComponent } from '../../admin/centro/centro.component';
 import { Enfermedad } from 'src/app/models/enfermedad.model';
 import { Sintoma } from 'src/app/models/sintoma.model';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Centro } from 'src/app/models/centro.model';
 
 @Component({
-  selector: 'app-info-enfermedad',
-  templateUrl: './info-enfermedad.component.html',
-  styleUrls: ['./info-enfermedad.component.css']
+  selector: 'app-info-centro',
+  templateUrl: './info-centro.component.html',
+  styleUrls: ['./info-centro.component.css']
 })
-export class InfoEnfermedadComponent implements OnInit {
+export class InfoCentroComponent implements OnInit {
 
-  public enfermedad: Enfermedad;
-  public uidEnfermedad: string = '';
+  public centro: Centro;
+  public uidCentro: string = '';
 
   public cargando: boolean = false;
 
   constructor(private fb: FormBuilder,
     private enfermedadService: EnfermedadService,
+    private centroService: CentroService,
     private sintomaService: SintomaService,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.uidEnfermedad = this.route.snapshot.params['uid'];
-    this.cargarEnfermedad(this.uidEnfermedad);
+    this.uidCentro = this.route.snapshot.params['uid'];
+    this.cargarCentro(this.uidCentro);
   }
 
-
-  cargarEnfermedad(uidEnfermedad){
+  cargarCentro(uidCentro){
     this.cargando = true;
-    this.enfermedadService.cargarEnfermedad(uidEnfermedad)
+    this.centroService.cargarCentro(uidCentro)
       .subscribe(res => {
         this.cargando = false;
-        this.enfermedad = res['enfermedades'];
+        this.centro = res['centros'];
       }, (err) => {
         this.cargando = false;
         Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
@@ -45,28 +48,11 @@ export class InfoEnfermedadComponent implements OnInit {
       }	);	
   }
 
-
-  mostrarSintomas(sintomas: Array<Sintoma>){
-    let sintomasString = '';
-    sintomas.forEach(sintoma => {
-      sintomasString += sintoma.nombre + ', ';
-    });
-    return sintomasString.substring(0, sintomasString.length - 2);
+  irAlaEnfermedad(uidEnfermedad:string){
     
- }
-
- irAlSintoma(uidSintoma:string){
-    
-  this.router.navigateByUrl('/usuario/info_sintoma/' + uidSintoma);
-
-  }
-
-
-
+    this.router.navigateByUrl('/usuario/info_enfermedad/' + uidEnfermedad);
   
+    }
   
- }
 
-
-
-
+}

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
+import { Router } from '@angular/router';
+
 
 declare function iniciarCustom();
 
@@ -10,10 +13,23 @@ declare function iniciarCustom();
 })
 export class UsuarioLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor( private location: Location,
+               private router: Router) { }
 
   ngOnInit(): void {
     iniciarCustom();
+  }
+
+  irAtras(){
+    this.location.back();
+  }
+
+  comprobarUrlInicio(){
+    if(this.router.url === '/usuario/mainpage'){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }
