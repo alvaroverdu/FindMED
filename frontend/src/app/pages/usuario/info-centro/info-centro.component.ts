@@ -50,7 +50,7 @@ export class InfoCentroComponent implements OnInit {
 
   irAlaEnfermedad(uidEnfermedad:string){
     
-    this.router.navigateByUrl('/usuario/info_enfermedad/' + uidEnfermedad);
+    this.router.navigateByUrl('/usuario/info-enfermedad/' + uidEnfermedad);
   
     }
   

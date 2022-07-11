@@ -2,6 +2,7 @@ const { response } = require('express');
 const { infoToken } = require('../helpers/infotoken');
 
 const Centro = require('../models/centros');
+const enfermedades = require('../models/enfermedades');
 const Enfermedad = require('../models/enfermedades');
 
 const sleep = (ms) => {
@@ -138,7 +139,7 @@ const crearCentro = async(req, res = response) => {
 
 const actualizarCentro = async(req, res = response) => {
 
-    const { nombre, especialidad } = req.body;
+    const { nombre, enfermedades } = req.body;
     const uid = req.params.id;
 
     try {
@@ -150,7 +151,7 @@ const actualizarCentro = async(req, res = response) => {
                 msg: 'No tiene permisos para actualizar centros',
             });
         }
-        // Comrprobar que no existe un usuario con ese email registrado
+        // Comrprobar existencia del centro
         const existeCentro = await Centro.findById(uid);
 
         if (!existeCentro) {
@@ -160,18 +161,29 @@ const actualizarCentro = async(req, res = response) => {
             });
         }
 
-        // Comrprobar que no existe un usuario con ese email registrado
-        const existeCentron = await Centro.findOne({ nombre });
+            // Comprobamos la lista de alumnos que nos envían que existan
+       let listaenfermedadesinsertar = [];
+       // Si nos ha llegado lista de alumnos comprobar que existen y limpiar campos raros
+       if (enfermedades) {
+           await Promise.all(enfermedades.map(async(enfermedad) => {
+               const existeEnfermedad = await Enfermedad.findById(enfermedad);
+               if (!existeEnfermedad) {
+                   return res.status(400).json({
+                       ok: false,
+                       msg: 'Uno de los sintomas no existe'
+                   });
+               }
+               listaenfermedadesinsertar.push(existeEnfermedad);
+           }));
+           
+       }
 
-        if (existeCentron && (existeCentron._id != uid)) {
-            return res.status(400).json({
-                ok: false,
-                msg: 'No se puede cambiar el nombre porque ya existe un centro con el mismo nombre'
-            });
-        }
 
-        const centro = await Centro.findByIdAndUpdate(uid, req.body, { new: true });
-        res.json({
+       let object = req.body;
+       object.enfermedades = listaenfermedadesinsertar;
+
+       const centro = await Centro.findByIdAndUpdate(uid, object, { new: true });
+       res.json({
             ok: true,
             msg: 'Centro actualizado',
             centro

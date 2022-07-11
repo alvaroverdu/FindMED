@@ -28,7 +28,6 @@ router.put('/:id', [
     validarJWT,
     check('nombre', 'El argumento nombre es obligatorio').not().isEmpty().trim(),
     check('ubicacion', 'El argumento ubicacion es obligatorio').not().isEmpty().trim(),
-    check('activo', 'El argumento activo es obligatorio y debe ser true/false').isBoolean(),
     check('id', 'El identificador no es válido').isMongoId(),
     validarCampos,
 ], actualizarCentro);

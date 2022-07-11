@@ -57,7 +57,7 @@ export class InfoEnfermedadComponent implements OnInit {
 
  irAlSintoma(uidSintoma:string){
     
-  this.router.navigateByUrl('/usuario/info_sintoma/' + uidSintoma);
+  this.router.navigateByUrl('/usuario/info-sintoma/' + uidSintoma);
 
   }
 

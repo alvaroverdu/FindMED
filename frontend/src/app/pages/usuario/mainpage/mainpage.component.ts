@@ -105,7 +105,7 @@ export class MainpageComponent implements OnInit {
  }
 
  irAlaEnfermedad(enfermedad: String ){
-  this.router.navigateByUrl('/usuario/info_enfermedad/' + enfermedad);
+  this.router.navigateByUrl('/usuario/info-enfermedad/' + enfermedad);
  }
 
  volver() {

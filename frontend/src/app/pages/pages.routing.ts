@@ -30,6 +30,9 @@ import { MainpageComponent } from './usuario/mainpage/mainpage.component';
 import { InfoEnfermedadComponent } from './usuario/info-enfermedad/info-enfermedad.component';
 import { InfoSintomaComponent } from './usuario/info-sintoma/info-sintoma.component';
 import { InfoCentroComponent } from './usuario/info-centro/info-centro.component';
+import { BiblioSintomasComponent } from './usuario/biblio-sintomas/biblio-sintomas.component';
+import { BiblioEnfermedadesComponent } from './usuario/biblio-enfermedades/biblio-enfermedades.component';
+import { BiblioCentrosComponent } from './usuario/biblio-centros/biblio-centros.component';
 
 
 /*
@@ -152,17 +155,17 @@ const routes: Routes = [
                                                         titulo: 'Inicio Usuario',
                                                         breadcrums: []
                                                       },},
-    { path: 'info_enfermedad/:uid', component: InfoEnfermedadComponent, canActivate: [ AuthGuard ], data: { 
+    { path: 'info-enfermedad/:uid', component: InfoEnfermedadComponent, canActivate: [ AuthGuard ], data: { 
                                                         rol:'ROL_USUARIO',
                                                         titulo: 'Info enfermedades',
                                                         breadcrums: []
                                                       },},
-    { path: 'info_sintoma/:uid', component: InfoSintomaComponent, canActivate: [ AuthGuard ], data: { 
+    { path: 'info-sintoma/:uid', component: InfoSintomaComponent, canActivate: [ AuthGuard ], data: { 
                                                         rol:'ROL_USUARIO',
                                                         titulo: 'Info sintomas',
                                                         breadcrums: []
                                                       },},
-    { path: 'info_centro/:uid', component: InfoCentroComponent, canActivate: [ AuthGuard ], data: { 
+    { path: 'info-centro/:uid', component: InfoCentroComponent, canActivate: [ AuthGuard ], data: { 
                                                         rol:'ROL_USUARIO',
                                                         titulo: 'Info centros',
                                                         breadcrums: []
@@ -170,6 +173,21 @@ const routes: Routes = [
     { path: 'perfil', component: PerfilComponent, canActivate: [ AuthGuard ], data: { 
                                                         rol:'ROL_USUARIO',
                                                         titulo: 'Info perfil',
+                                                        breadcrums: []
+                                                      },},
+    { path: 'biblio-sintomas', component: BiblioSintomasComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol:'ROL_USUARIO',
+                                                        titulo: 'Info biblio sintomas',
+                                                        breadcrums: []
+                                                      },},
+    { path: 'biblio-enfermedades', component: BiblioEnfermedadesComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol:'ROL_USUARIO',
+                                                        titulo: 'Info biblio enfermedades',
+                                                        breadcrums: []
+                                                      },},
+    { path: 'biblio-centros', component: BiblioCentrosComponent, canActivate: [ AuthGuard ], data: { 
+                                                        rol:'ROL_USUARIO',
+                                                        titulo: 'Info biblio centros',
                                                         breadcrums: []
                                                       },},
     { path: '**', redirectTo: 'mainpage'}
