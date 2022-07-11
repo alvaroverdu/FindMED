@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminLayoutComponent } from '../layouts/admin-layout/admin-layout.component';
-import { PerfilComponent } from './perfil/perfil.component';
 
 import { AdminModule } from './admin/admin.module';
 import { AluModule } from './alu/alu.module';
@@ -15,11 +14,9 @@ import { CommonsModule } from '../commons/commons.module';
 @NgModule({
   declarations: [
     AdminLayoutComponent,
-    PerfilComponent,
   ],
   exports: [
     AdminLayoutComponent,
-    PerfilComponent,
   ],
   imports: [
     CommonModule,

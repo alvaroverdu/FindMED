@@ -1,6 +1,6 @@
 <div class="animate__animated animate__fadeInDown animate__faster">
     <div class="d-flex justify-content-center">
-        <div class="card col-md-10">
+        <div class="card col-md-12">
             <div class="card-body">
                 <h5 class="card-title">Datos del perfil</h5>
                 <!--                 <div class="text-success text-right animate__animated animate__faster" [ngClass]="{'animate__fadeIn': showOKD && datosForm.pristine, 'animate__fadeOut' : !(showOKD && datosForm.pristine)}">Datos actualizados</div>
@@ -45,10 +45,12 @@
                                 <span class=" ">Ubicación</span>
                             </div>
                             <div class="col-lg-8 col-md-12 ">
-                                <input type="text " class="form-control " formControlName="ubicacion" [ngClass]="{ 'is-invalid' : campoNoValido( 'ubicacion')} " id="ubicacion">
-                                <div class="invalid-feedback ">
-                                    El campo es obligatorio
-                                </div>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Escoja una provincia</mat-label>
+                                    <mat-select formControlName="ubicacion">
+                                      <mat-option *ngFor="let provincia of provincias" value="{{provincia}}">{{provincia}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center m-t-10 ">

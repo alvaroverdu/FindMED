@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { PerfilComponent } from './perfil/perfil.component';
 import { InfoEnfermedadComponent } from './info-enfermedad/info-enfermedad.component';
 import { InfoSintomaComponent } from './info-sintoma/info-sintoma.component';
 import { InfoCentroComponent } from './info-centro/info-centro.component';
@@ -17,7 +18,7 @@ import { BiblioCentrosComponent } from './biblio-centros/biblio-centros.componen
 
 
 @NgModule({
-  declarations: [MainpageComponent, InfoEnfermedadComponent, InfoSintomaComponent, InfoCentroComponent, BiblioSintomasComponent, BiblioEnfermedadesComponent, BiblioCentrosComponent],
+  declarations: [MainpageComponent, InfoEnfermedadComponent, InfoSintomaComponent, InfoCentroComponent, BiblioSintomasComponent, BiblioEnfermedadesComponent, BiblioCentrosComponent,PerfilComponent],
   imports: [
     CommonModule,
     FormsModule,

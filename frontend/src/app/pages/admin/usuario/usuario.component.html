@@ -66,10 +66,12 @@
                             <span class="">Ubicación</span>
                         </div>
                         <div class="col-lg-8 col-md-12">
-                            <input type="text" class="form-control " formControlName="ubicacion" [ngClass]="{'is-invalid' : campoNoValido('ubicacion')}" id="ubicacion">
-                            <div class="invalid-feedback">
-                                El campo es obligatorio
-                            </div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Escoja una provincia</mat-label>
+                                <mat-select formControlName="ubicacion">
+                                  <mat-option *ngFor="let provincia of provincias" value="{{provincia}}">{{provincia}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
                         </div>
                     </div>
 

@@ -10,7 +10,7 @@ import { UsuariosComponent } from './admin/usuarios/usuarios.component';
 import { UsuarioComponent } from './admin/usuario/usuario.component';
 import { DashboardprofComponent } from './prof/dashboardprof/dashboardprof.component';
 import { DashboardaluComponent } from './alu/dashboardalu/dashboardalu.component';
-import { PerfilComponent } from './perfil/perfil.component';
+import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { CursosComponent } from './admin/cursos/cursos.component';
 import { CursoComponent } from './admin/curso/curso.component';
 import { AsignaturasComponent } from './admin/asignaturas/asignaturas.component';

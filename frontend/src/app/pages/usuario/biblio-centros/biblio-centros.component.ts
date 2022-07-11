@@ -17,10 +17,19 @@ import { Centro } from 'src/app/models/centro.model';
 export class BiblioCentrosComponent implements OnInit {
 
   public centroForm = this.fb.group({
-    centros: [''],
+    provincias: [''],
   });
 
   public centros: Centro[] = [];
+  public centrosFiltrados: Centro[] = [];
+  public buscado: boolean;
+
+
+  public provincias = ['Alava','Albacete','Alicante','Almería','Asturias','Avila','Badajoz','Barcelona','Burgos','Cáceres',
+  'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba','La Coruña','Cuenca','Gerona','Granada','Guadalajara',
+  'Guipúzcoa','Huelva','Huesca','Islas Baleares','Jaén','León','Lérida','Lugo','Madrid','Málaga','Murcia','Navarra',
+  'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
+  'Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza'];
 
   constructor(private fb: FormBuilder,
     private enfermedadService: EnfermedadService,
@@ -31,6 +40,7 @@ export class BiblioCentrosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarCentros();
+    this.buscado=false;
   }
 
   cargarCentros() {
@@ -41,8 +51,36 @@ export class BiblioCentrosComponent implements OnInit {
       });
   }
 
-  buscar(){
-    this.router.navigateByUrl('/usuario/info-centro' + '/' + this.centroForm.value.centros);
+  buscarProvinciaIgual(){
+    this.centros.forEach(centro => {
+      if(this.centroForm.value.provincias === centro.ubicacion){
+        this.centrosFiltrados.push(centro);
+      }
+      console.log('Centros', this.centrosFiltrados);
+    });
+    this.buscado=true;
   }
+
+  mostrarCentros(){
+    let centroString = '';
+    this.centrosFiltrados.forEach(centro => {
+      centroString += centro.nombre + ', ';
+    });
+    return centroString.substring(0, centroString.length - 2);
+}
+
+comprobarCentros(){
+  if(this.centrosFiltrados.length !== 0){
+   return true;
+  }
+  else{
+    return false;
+  }
+}
+
+irAlCentro(centro: String ){
+  this.router.navigateByUrl('/usuario/info-centro/' + centro);
+ }
+
 
 }
