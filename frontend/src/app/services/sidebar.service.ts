@@ -18,10 +18,6 @@ export class SidebarService {
   menuAlumno: sidebarItem[]=[
     { titulo: 'Dashboard Alumno', icono: 'fa fa-tachometer-alt', sub: false, url: '/alu/dashboard'},
   ];
-  menuProfesor: sidebarItem[]=[
-    { titulo: 'Dashboard Profesor', icono: 'fa fa-tachometer-alt', sub: false, url: '/prof/dashboard'},
-    { titulo: 'Asignaturas - Items', icono: 'fa fa-copy', sub: false, url: '/prof/asignaturas'},
-  ];
   none: sidebarItem[]=[
     { titulo: 'error', icono: 'fa fa-exclamation-triangle', sub: false, url: '/error'}
   ]
@@ -32,8 +28,6 @@ export class SidebarService {
     switch (this.usuarioService.rol) {
       case 'ROL_ADMIN':
         return this.menuAdmin;
-      case 'ROL_PROFESOR':
-        return this.menuProfesor;
       case 'ROL_USUARIO':
         return this.menuAlumno;
     }

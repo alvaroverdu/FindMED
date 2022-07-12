@@ -3,7 +3,6 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
 const Usuario = require('../models/usuarios');
-const Grupo = require('../models/grupos');
 const { infoToken } = require('../helpers/infotoken');
 
 /*
@@ -452,8 +451,41 @@ const borrarUsuario = async(req, res = response) => {
             ok: true,
             msg: 'Error borrando usuario'
         });
+    } 
+    
+}
+
+const actualizarEnfermedad = async(req, res = response) => {
+            
+    const uid = req.body.id;
+    const enfermedad = req.body.enfermedad;
+
+    try {
+        // Comprobamos si existe el usuario que queremos actualizar
+        const existeUsuario = await Usuario.findById(uid);
+        if (!existeUsuario) {
+            return res.status(400).json({
+                ok: true,
+                msg: 'El usuario no existe'
+            });
+        }
+        // Lo actualizamos y devolvemos el usuaurio recien actualizado
+        const resultado = await Usuario.findByIdAndUpdate(uid, { enfermedad: enfermedad }, { new: true });
+
+        res.json({
+            ok: true,
+            msg: 'Usuario actualizado',
+            resultado: resultado
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: true,
+            msg: 'Error actualizando usuario'
+        });
     }
+
 }
 
 
-module.exports = { obtenerUsuarios, crearUsuario, sendRecoverPassword, actualizarUsuario, borrarUsuario, actualizarPassword, listaUsuarios, listaUsuariosRol }
+module.exports = {obtenerUsuarios, crearUsuario, sendRecoverPassword, actualizarUsuario, borrarUsuario, actualizarPassword, listaUsuarios, listaUsuariosRol, actualizarEnfermedad }

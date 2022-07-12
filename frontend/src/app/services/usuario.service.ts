@@ -6,7 +6,6 @@ import { tap, map, catchError } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
-import { Grupo } from '../models/grupo.model';
 import { Enfermedad } from '../models/enfermedad.model';
 
 @Injectable({
@@ -132,6 +131,10 @@ export class UsuarioService {
 
   recuperarPassword(data){
     return this.http.post(`${environment.base_url}/usuarios/recovery`, data, this.cabeceras);
+  }
+
+  anyadirFavorito(uid: string, enfermedad: Enfermedad){
+    return this.http.put(`${environment.base_url}/usuarios/${uid}/enfermedad/`, enfermedad, this.cabeceras);
   }
 
   get cabeceras() {

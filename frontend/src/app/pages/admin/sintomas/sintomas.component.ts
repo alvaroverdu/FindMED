@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { Curso } from '../../../models/curso.model';
-import { CursoService } from '../../../services/curso.service';
 import Swal from 'sweetalert2';
 import { Sintoma } from '../../../models/sintoma.model';
 import { UsuarioService } from '../../../services/usuario.service';
@@ -26,8 +24,7 @@ export class SintomasComponent implements OnInit {
   public ultimaBusqueda = '';
   
 
-  constructor( private cursoService: CursoService,
-               private usuarioService: UsuarioService,
+  constructor( private usuarioService: UsuarioService,
                private sintomaService: SintomaService) { }
 
   ngOnInit(): void {

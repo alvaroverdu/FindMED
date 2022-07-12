@@ -3,7 +3,7 @@ Ruta base: /api/usuarios
 */
 
 const { Router } = require('express');
-const { obtenerUsuarios, crearUsuario, actualizarUsuario, borrarUsuario, actualizarPassword, listaUsuarios, listaUsuariosRol,sendRecoverPassword } = require('../controllers/usuarios');
+const { obtenerUsuarios, crearUsuario, actualizarUsuario, borrarUsuario, actualizarPassword, listaUsuarios, listaUsuariosRol,sendRecoverPassword, actualizarEnfermedad } = require('../controllers/usuarios');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middleware/validar-campos');
 const { validarJWT } = require('../middleware/validar-jwt');
@@ -59,6 +59,13 @@ router.put('/:id', [
     check('activo', 'El estado activo debe ser true/false').optional().isBoolean(),
     validarCampos,
 ], actualizarUsuario);
+
+router.put('/:id/enfermedad', [
+    validarJWT,
+    check('id', 'El identificador no es válido').isMongoId(),
+    check('enfermedad', 'El argumento enfermedad es obligatorio').not().isEmpty().trim(),
+    validarCampos,
+], actualizarEnfermedad);
 
 router.delete('/:id', [
     validarJWT,

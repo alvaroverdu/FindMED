@@ -10,7 +10,7 @@ import { UsuarioService } from '../../services/usuario.service';
 
 export class SelectusersComponent implements OnInit, OnChanges {
 
-  // Recibe una lista de usuarios extraidos de alumnos/profesores de BD
+  // Recibe una lista de usuarios extraidos de BD
   // tiene la estructura {_id: string, usuario: string}
   @Input() selected: {_id: string, usuario: string}[] = [];
   @Input() rol: string = 'ROL_USUARIO';

@@ -12,13 +12,14 @@ import { InfoCentroComponent } from './info-centro/info-centro.component';
 import { BiblioSintomasComponent } from './biblio-sintomas/biblio-sintomas.component';
 import { BiblioEnfermedadesComponent } from './biblio-enfermedades/biblio-enfermedades.component';
 import { BiblioCentrosComponent } from './biblio-centros/biblio-centros.component';
+import { GuardarBusquedaComponent } from './guardar-busqueda/guardar-busqueda.component';
 
 
 
 
 
 @NgModule({
-  declarations: [MainpageComponent, InfoEnfermedadComponent, InfoSintomaComponent, InfoCentroComponent, BiblioSintomasComponent, BiblioEnfermedadesComponent, BiblioCentrosComponent,PerfilComponent],
+  declarations: [MainpageComponent, InfoEnfermedadComponent, InfoSintomaComponent, InfoCentroComponent, BiblioSintomasComponent, BiblioEnfermedadesComponent, BiblioCentrosComponent,PerfilComponent, GuardarBusquedaComponent],
   imports: [
     CommonModule,
     FormsModule,

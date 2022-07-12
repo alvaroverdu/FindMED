@@ -1,5 +1,4 @@
 import { environment } from '../../environments/environment';
-import { Grupo } from './grupo.model';
 import { Enfermedad } from './enfermedad.model';
 const base_url: string = environment.base_url;
 

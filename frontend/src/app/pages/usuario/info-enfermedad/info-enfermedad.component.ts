@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SintomaService } from '../../../services/sintoma.service';
 import { EnfermedadService } from 'src/app/services/enfermedad.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { Enfermedad } from 'src/app/models/enfermedad.model';
 import { Sintoma } from 'src/app/models/sintoma.model';
 
@@ -22,6 +23,7 @@ export class InfoEnfermedadComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private enfermedadService: EnfermedadService,
+    private usuarioService: UsuarioService,
     private sintomaService: SintomaService,
     private route: ActivatedRoute,
     private router: Router) { }
@@ -53,13 +55,25 @@ export class InfoEnfermedadComponent implements OnInit {
     });
     return sintomasString.substring(0, sintomasString.length - 2);
     
- }
+  }
 
  irAlSintoma(uidSintoma:string){
     
   this.router.navigateByUrl('/usuario/info-sintoma/' + uidSintoma);
 
+ }
+
+ anyadirFav(){
+  console.log('Funciona');
+  this.usuarioService.anyadirFavorito(this.usuarioService.uid, this.enfermedad).subscribe(res => {
+    Swal.fire({icon: 'success', title: 'Éxito', text: 'Se ha añadido a favoritos', });
   }
+  , (err) => {
+    Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
+    return;
+  });
+ }
+
 
 
 
