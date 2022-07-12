@@ -94,7 +94,7 @@ const crearEnfermedad = async(req, res = response) => {
         // Si nos ha llegado lista de alumnos comprobar que existen y limpiar campos raros
         if (sintomas) {
             await Promise.all(sintomas.map(async(sintoma) => {
-                const existeSintoma = await Sintoma.findById(sintoma);
+                const existeSintoma = await Sintoma.findById(sintoma.uid);
                 if (!existeSintoma) {
                     return res.status(400).json({
                         ok: false,
@@ -157,7 +157,7 @@ const actualizarEnfermedad = async(req, res) => {
        // Si nos ha llegado lista de alumnos comprobar que existen y limpiar campos raros
        if (sintomas) {
            await Promise.all(sintomas.map(async(sintoma) => {
-               const existeSintoma = await Sintoma.findById(sintoma);
+               const existeSintoma = await Sintoma.findById(sintoma.uid);
                if (!existeSintoma) {
                    return res.status(400).json({
                        ok: false,

@@ -35,6 +35,9 @@ export class CentroComponent implements OnInit {
   'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
   'Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza'];
 
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
 
 
   constructor( private fb: FormBuilder,
@@ -49,6 +52,22 @@ export class CentroComponent implements OnInit {
     this.uid = this.route.snapshot.params['uid'];
     this.datosForm.get('uid').setValue(this.uid);
     this.cargarDatos(this.uid);
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'uid',
+      textField: 'nombre',
+      selectAllText: 'Seleccionar todos',
+      unSelectAllText: 'Deseleccionar todos',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+  }
+
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
   }
 
   cargarDatos( uid: string ) {

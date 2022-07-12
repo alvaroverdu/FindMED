@@ -60,11 +60,16 @@
                             <span class="">Síntomas</span>
                         </div>
                         <div class="col-lg-8 col-md-12">
-                            <select class="form-control" [ngClass]="{'is-invalid' : campoNoValido('sintomas')}" formControlName="sintomas" multiple="multiple">
-                                <option *ngFor="let sintoma of sintomas" value="{{sintoma.uid}}">
-                                    {{sintoma.nombre}}
-                                </option>
-                            </select>
+                            <ng-multiselect-dropdown
+                            [placeholder]="'Escoja los síntomas'"
+                            [settings]="dropdownSettings"
+                            [data]="sintomas"
+                            value="uid" 
+                            (onSelect)="onItemSelect($event)"
+                            (onSelectAll)="onSelectAll($event)"
+                            formControlName="sintomas"
+                            >
+                            </ng-multiselect-dropdown>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center m-t-10 ">

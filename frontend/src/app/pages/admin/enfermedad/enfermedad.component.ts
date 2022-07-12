@@ -5,6 +5,8 @@ import { SintomaService } from 'src/app/services/sintoma.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Sintoma } from 'src/app/models/sintoma.model';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+
 
 @Component({
   selector: 'app-enfermedad',
@@ -26,6 +28,9 @@ export class EnfermedadComponent implements OnInit {
   public uid: string = 'nuevo';
 
   public sintomas: Sintoma[] = [];
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
 
 
   constructor(private fb: FormBuilder,
@@ -35,12 +40,33 @@ export class EnfermedadComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+
     this.cargarSintomas();
     this.uid = this.route.snapshot.params['uid'];
     this.datosForm.get('uid').setValue(this.uid);
     this.cargarDatos(this.uid);
 
+    //DROPDOWN SELECT
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'uid',
+      textField: 'nombre',
+      selectAllText: 'Seleccionar todos',
+      unSelectAllText: 'Deseleccionar todos',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
   }
+
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
+
+
 
   cargarDatos(uid: string) {
     this.submited = false;
@@ -54,7 +80,7 @@ export class EnfermedadComponent implements OnInit {
           this.datosForm.get('nombre').setValue(res['enfermedades'].nombre);
           this.datosForm.get('descripcion').setValue(res['enfermedades'].descripcion);
           this.datosForm.get('tratamiento').setValue(res['enfermedades'].tratamiento);
-          this.datosForm.get('sintomas').setValue(res['enfermedades'].sintomas[0].nombre);
+          this.datosForm.get('sintomas').setValue(res['enfermedades'].sintomas);
 
           this.datosForm.markAsPristine();
           this.submited = true;
@@ -80,9 +106,10 @@ export class EnfermedadComponent implements OnInit {
         this.sintomas = res['sintomas'];
         console.log(res['sintomas']);
       });
-
       
+
   }
+
 
   enviar() {
     this.submited = true;
