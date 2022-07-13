@@ -38,7 +38,7 @@ export class UsuarioService {
     return this.http.post(`${environment.base_url}/upload/fotoperfil/${uid}`, datos, this.cabeceras);
   }
 
-  cargarUsuario( uid: string) {
+  cargarUsuario( uid: string): Observable<object> {
     if (!uid) { uid = '';}
     return this.http.get(`${environment.base_url}/usuarios/?id=${uid}` , this.cabeceras);
   }
@@ -134,7 +134,9 @@ export class UsuarioService {
   }
 
   anyadirFavorito(uid: string, enfermedad: Enfermedad){
-    return this.http.put(`${environment.base_url}/usuarios/${uid}/enfermedad/`, enfermedad, this.cabeceras);
+    console.log('Entra');
+    console.log(enfermedad);
+    return this.http.put(`${environment.base_url}/usuarios/enfermedad/${uid}`, enfermedad, this.cabeceras);
   }
 
   get cabeceras() {

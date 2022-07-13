@@ -8,6 +8,7 @@ import { Sintoma } from 'src/app/models/sintoma.model';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Usuario } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-info-enfermedad',
@@ -65,12 +66,16 @@ export class InfoEnfermedadComponent implements OnInit {
 
  anyadirFav(){
   console.log('Funciona');
-  this.usuarioService.anyadirFavorito(this.usuarioService.uid, this.enfermedad).subscribe(res => {
-    Swal.fire({icon: 'success', title: 'Éxito', text: 'Se ha añadido a favoritos', });
-  }
-  , (err) => {
-    Swal.fire({icon: 'error', title: 'Oops...', text: 'No se pudo completar la acción, vuelva a intentarlo',});
-    return;
+  console.log(this.usuarioService.uid);
+  this.usuarioService.cargarUsuario(this.usuarioService.uid).subscribe(res => {
+    let usuario = new Usuario (res['usuarios'].uid,res['usuarios'].rol,res['usuarios'].nombre, res['usuarios'].email, res['usuarios'].edad,res['usuarios'].ubicacion,res['usuarios'].enfermedades,res['usuarios'].alta,res['usuarios'].activo);
+    usuario.enfermedades.push(this.enfermedad);
+    console.log('Enfermedad',this.enfermedad);
+    console.log('Usuario',usuario.enfermedades);
+    this.usuarioService.actualizarUsuario(this.usuarioService.uid,usuario).subscribe(res => {
+      console.log(res);
+      Swal.fire({icon: 'success', title: 'Éxito', text: 'Se ha añadido a favoritos',});
+    });
   });
  }
 

@@ -131,9 +131,9 @@ const routes: Routes = [
                                                         titulo: 'Info biblio centros',
                                                         breadcrums: []
                                                       },},
-    { path: 'busqueda-guardada', component: GuardarBusquedaComponent, canActivate: [ AuthGuard ], data: { 
+    { path: 'favoritos', component: GuardarBusquedaComponent, canActivate: [ AuthGuard ], data: { 
                                                         rol:'ROL_USUARIO',
-                                                        titulo: 'Info búsqueda guardada',
+                                                        titulo: 'Info favoritos',
                                                         breadcrums: []
                                                       },},
     { path: '**', redirectTo: 'mainpage'}

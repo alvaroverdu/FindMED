@@ -9,14 +9,14 @@ const sleep = (ms) => {
     });
 }
 
-const obtenerSintomas = async(req, res = repsonse) => {
-
+const obtenerSintomas = async(req, res = response) => {
     // Paginación
     const desde = Number(req.query.desde) || 0;
     const hasta = req.query.hasta || '';
     let registropp = Number(process.env.DOCSPERPAGE);
     const id = req.query.id;
     const texto = req.query.texto;
+    const busqueda = req.query.busqueda;
     let textoBusqueda = '';
     if (texto) {
         textoBusqueda = new RegExp(texto, 'i');
@@ -34,18 +34,62 @@ const obtenerSintomas = async(req, res = repsonse) => {
                 Sintoma.countDocuments()
             ]);
         } else {
-            if (texto) {
+            if (busqueda) {
                 [sintomas, total] = await Promise.all([
-                    Sintoma.find({ $or: [{ nombre: textoBusqueda }] }).skip(desde).limit(registropp),
-                    Sintoma.countDocuments({ $or: [{ nombre: textoBusqueda }] })
-                ]);
-            } else {
-                [sintomas, total] = await Promise.all([
-                    Sintoma.find({}).skip(desde).limit(registropp),
+                    Sintoma.find({ nombre: new RegExp(busqueda,'i')}),
                     Sintoma.countDocuments()
                 ]);
+            }else{
+                if (texto) {
+                    [sintomas, total] = await Promise.all([
+                        Sintoma.find({ $or: [{ nombre: textoBusqueda }] }).skip(desde).limit(registropp),
+                        Sintoma.countDocuments({ $or: [{ nombre: textoBusqueda }] })
+                    ]);
+                } else {
+                    [sintomas, total] = await Promise.all([
+                        Sintoma.find({}).skip(desde).limit(registropp),
+                        Sintoma.countDocuments()
+                    ]);
+                }
             }
+            
         }
+        res.json({
+            ok: true,
+            msg: 'obtenerSintomas',
+            sintomas,
+            page: {
+                desde,
+                registropp,
+                total
+            }
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            ok: false,
+            msg: 'Error al obtener sintomas'
+        });
+    }
+}
+
+const obtenerSintomasBusqueda = async(req, res = repsonse) => {
+
+    // Paginación
+    const texto = req.query.texto;
+    let textoBusqueda = '';
+    if (texto) {
+        textoBusqueda = new RegExp(texto, 'i');
+        //console.log('texto', texto, ' textoBusqueda', textoBusqueda);
+    }
+    //await sleep(2000);
+    try {
+        let sintomas, total;
+            [sintomas, total] = await Promise.all([
+                Sintoma.find({ nombre: '/' + textoBusqueda + '/' }),
+                Sintoma.countDocuments()
+            ]);
         res.json({
             ok: true,
             msg: 'obtenerSintomas',
@@ -197,4 +241,4 @@ const borrarSintoma = async(req, res = response) => {
 
 
 
-module.exports = { obtenerSintomas, crearSintoma, actualizarSintoma, borrarSintoma }
+module.exports = { obtenerSintomas, crearSintoma, actualizarSintoma, borrarSintoma,obtenerSintomasBusqueda }

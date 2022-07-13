@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const Usuario = require('../models/usuarios');
 const { infoToken } = require('../helpers/infotoken');
+const enfermedades = require('../models/enfermedades');
 
 /*
 get / 
@@ -88,7 +89,6 @@ const listaUsuariosRol = async(req, res) => {
 }
 
 const obtenerUsuarios = async(req, res) => {
-
     // Para paginación
     // Recibimos el desde si existe y establecemos el número de registros a devolver por pa´gina
     const desde = Number(req.query.desde) || 0;
@@ -338,7 +338,7 @@ const actualizarUsuario = async(req, res = response) => {
 
     // Asegurarnos de que aunque venga el password no se va a actualizar, la modificaciñon del password es otra llamada
     // Comprobar que si cambia el email no existe ya en BD, si no existe puede cambiarlo
-    const { password, alta, email, activo, ...object } = req.body;
+    const { password, alta, email, activo, enfermedades, ...object } = req.body;
     const uid = req.params.id;
 
 
@@ -378,6 +378,9 @@ const actualizarUsuario = async(req, res = response) => {
         }
         // llegadoa aquí el email o es el mismo o no está en BD, es obligatorio que siempre llegue un email
         object.email = email;
+        
+        //Enfermedades
+        object.enfermedades = enfermedades;
 
         // Si el rol es de administrador, entonces si en los datos venía el campo activo lo dejamos
         if ((infoToken(token).rol === 'ROL_ADMIN') && activo !== undefined) {
@@ -456,7 +459,7 @@ const borrarUsuario = async(req, res = response) => {
 }
 
 const actualizarEnfermedad = async(req, res = response) => {
-            
+    console.log('entra');       
     const uid = req.body.id;
     const enfermedad = req.body.enfermedad;
 
@@ -469,8 +472,10 @@ const actualizarEnfermedad = async(req, res = response) => {
                 msg: 'El usuario no existe'
             });
         }
+        let listaEnfermedades = existeUsuario.enfermedades;
+        listaEnfermedades.push(enfermedad);
         // Lo actualizamos y devolvemos el usuaurio recien actualizado
-        const resultado = await Usuario.findByIdAndUpdate(uid, { enfermedad: enfermedad }, { new: true });
+        const resultado = await Usuario.findByIdAndUpdate(uid, { enfermedades: listaEnfermedades }, { new: true });
 
         res.json({
             ok: true,

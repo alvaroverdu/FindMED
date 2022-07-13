@@ -166,11 +166,11 @@ const actualizarCentro = async(req, res = response) => {
        // Si nos ha llegado lista de alumnos comprobar que existen y limpiar campos raros
        if (enfermedades) {
            await Promise.all(enfermedades.map(async(enfermedad) => {
-               const existeEnfermedad = await Enfermedad.findById(enfermedad.uid);
+               const existeEnfermedad = await Enfermedad.findOne({ nombre: enfermedad.nombre });
                if (!existeEnfermedad) {
                    return res.status(400).json({
                        ok: false,
-                       msg: 'Uno de los sintomas no existe'
+                       msg: 'Uno de las enfermedades no existe'
                    });
                }
                listaenfermedadesinsertar.push(existeEnfermedad);

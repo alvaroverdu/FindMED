@@ -17,6 +17,11 @@ export class EnfermedadService {
     return this.http.get(`${environment.base_url}/enfermedades/?id=${uid}` , this.cabeceras);
   }
 
+  cargarEnfermedad2( busqueda: string): Observable<object> {
+    if (!busqueda) { busqueda = '';}
+    return this.http.get(`${environment.base_url}/enfermedades/?busqueda=${busqueda}` , this.cabeceras);
+  }
+
   cargarEnfermedades( desde: number, textoBusqueda?: string, hasta?:string ): Observable<object> {
     if (!desde) { desde = 0; }
     if (!textoBusqueda) { textoBusqueda = ''; }

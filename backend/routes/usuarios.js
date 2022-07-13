@@ -25,6 +25,7 @@ router.get('/', [
     validarCampos,
 ], obtenerUsuarios);
 
+
 router.post('/', [
     validarJWT,
     check('nombre', 'El argumento nombre es obligatorio').not().isEmpty().trim(),
@@ -60,10 +61,9 @@ router.put('/:id', [
     validarCampos,
 ], actualizarUsuario);
 
-router.put('/:id/enfermedad', [
+router.put('/enfermedad/:id', [
     validarJWT,
     check('id', 'El identificador no es válido').isMongoId(),
-    check('enfermedad', 'El argumento enfermedad es obligatorio').not().isEmpty().trim(),
     validarCampos,
 ], actualizarEnfermedad);
 

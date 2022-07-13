@@ -18,7 +18,6 @@ export class ProgressbarComponent implements OnInit {
 
   accion() {
     this.ancho += 1;
-    console.log('Desde progressbar emito:', this.ancho);
     this.salida.emit(this.ancho);
   }
 

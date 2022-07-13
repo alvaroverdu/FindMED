@@ -14,6 +14,8 @@ const obtenerEnfermedades = async(req, res = repsonse) => {
     let registropp = Number(process.env.DOCSPERPAGE);
     const id = req.query.id;
     const texto = req.query.texto;
+    const busqueda = req.query.busqueda;
+
     let textoBusqueda = '';
     if (texto) {
         textoBusqueda = new RegExp(texto, 'i');
@@ -31,16 +33,23 @@ const obtenerEnfermedades = async(req, res = repsonse) => {
                 Enfermedad.countDocuments()
             ]);
         } else {
-            if (texto) {
+            if (busqueda) {
                 [enfermedades, total] = await Promise.all([
-                    Enfermedad.find({ $or: [{ nombre: textoBusqueda }] }).skip(desde).limit(registropp),
-                    Enfermedad.countDocuments({ $or: [{ nombre: textoBusqueda }] })
-                ]);
-            } else {
-                [enfermedades, total] = await Promise.all([
-                    Enfermedad.find({}).skip(desde).limit(registropp),
+                    Enfermedad.find({ 'sintomas.nombre': new RegExp(busqueda,'i')}),
                     Enfermedad.countDocuments()
-                ]);
+                ]); 
+            } else{
+                if (texto) {
+                    [enfermedades, total] = await Promise.all([
+                        Enfermedad.find({ $or: [{ nombre: textoBusqueda }] }).skip(desde).limit(registropp),
+                        Enfermedad.countDocuments({ $or: [{ nombre: textoBusqueda }] })
+                    ]);
+                } else {
+                    [enfermedades, total] = await Promise.all([
+                        Enfermedad.find({}).skip(desde).limit(registropp),
+                        Enfermedad.countDocuments()
+                    ]);
+                }
             }
         }
         res.json({
@@ -157,15 +166,16 @@ const actualizarEnfermedad = async(req, res) => {
        // Si nos ha llegado lista de alumnos comprobar que existen y limpiar campos raros
        if (sintomas) {
            await Promise.all(sintomas.map(async(sintoma) => {
-               const existeSintoma = await Sintoma.findById(sintoma.uid);
-               if (!existeSintoma) {
-                   return res.status(400).json({
-                       ok: false,
-                       msg: 'Uno de los sintomas no existe'
-                   });
-               }
-               listasintomasinsertar.push(existeSintoma);
+                const existeSintoma = await Sintoma.findOne({ nombre: sintoma.nombre });
+                    if (!existeSintoma) {
+                        return res.status(400).json({
+                            ok: false,
+                            msg: 'Uno de los sintomas no existe'
+                        });
+                    }
+                    listasintomasinsertar.push(existeSintoma);
            }));
+           
            
        }
 
