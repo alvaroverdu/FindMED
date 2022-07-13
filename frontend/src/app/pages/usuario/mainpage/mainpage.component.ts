@@ -42,7 +42,7 @@ export class MainpageComponent implements OnInit {
 
   }
 
-
+/*
   buscar(){     
     this.listaenfermedadesposibles = [];
     this.enfermedades.forEach(enfermedad => {
@@ -55,6 +55,19 @@ export class MainpageComponent implements OnInit {
       console.log(this.listaenfermedadesposibles);
     });
     this.buscado=true;
+  }
+*/
+
+  buscar2(){
+    this.enfermedadService.cargarEnfermedad2(this.busquedaForm.get('sintoma').value)
+      .subscribe(res => {
+        if(this.busquedaForm.get('sintoma').value!=''){
+        this.listaenfermedadesposibles = res['enfermedades'];
+        }else{
+          this.listaenfermedadesposibles = [];
+        }
+      });
+      this.buscado=true;
 
   }
 
@@ -103,7 +116,7 @@ export class MainpageComponent implements OnInit {
     return sintomasString.substring(0, sintomasString.length - 2);
     
  }
-
+ 
  irAlaEnfermedad(enfermedad: String ){
   this.router.navigateByUrl('/usuario/info-enfermedad/' + enfermedad);
  }
