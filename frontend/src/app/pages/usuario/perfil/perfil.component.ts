@@ -27,8 +27,7 @@ export class PerfilComponent implements OnInit {
   public datosForm = this.fb.group({
     email: [ '', [Validators.required, Validators.email] ],
     nombre: ['', Validators.required ],
-    edad: ['', Validators.required ],
-    ubicacion: ['', Validators.required ],
+    edad: ['', Validators.required ]
   });
 
   public datosPassword = this.fb.group({
@@ -69,8 +68,7 @@ export class PerfilComponent implements OnInit {
     // Actualizamos los datos del formulario y si va bien actualizamos foto
     this.usuarioService.actualizarUsuario( this.usuarioService.uid, this.datosForm.value )
     .subscribe( res => {
-      this.usuarioService.establecerdatos( res['usuario'].nombre,res['usuario'].email,res['usuario'].edad,res['usuario'].ubicacion );
-
+      this.usuarioService.establecerdatos( res['usuario'].nombre,res['usuario'].email,res['usuario'].edad);
       this.datosForm.markAsPristine(); // marcamos reiniciado de cambios
       this.showOKD = true;
     }, (err) => {

@@ -121,10 +121,9 @@ export class UsuarioService {
     this.usuario.imagen = nueva;
   }
 
-  establecerdatos(nombre: string,email: string, ubicacion:string, edad:number): void {
+  establecerdatos(nombre: string,email: string, edad:number): void {
     this.usuario.nombre = nombre;
     this.usuario.email = email;
-    this.usuario.ubicacion = ubicacion;
     this.usuario.edad = edad;
   }
   
