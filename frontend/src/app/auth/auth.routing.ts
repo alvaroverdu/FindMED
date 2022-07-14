@@ -5,6 +5,7 @@ import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.componen
 import { LoginComponent } from './login/login.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { NoauthGuard } from '../guards/noauth.guard';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: 'login', component: AuthLayoutComponent, canActivate: [ NoauthGuard] ,
@@ -15,6 +16,11 @@ const routes: Routes = [
   { path: 'recovery', component: AuthLayoutComponent, canActivate: [ NoauthGuard] ,
     children: [
       { path: '', component: RecoveryComponent},
+    ]
+  },
+  { path: 'register', component: AuthLayoutComponent, canActivate: [ NoauthGuard] ,
+    children: [
+      { path: '', component: RegisterComponent},
     ]
   },
 ];

@@ -7,12 +7,14 @@ import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.componen
 import { LoginComponent } from './login/login.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AuthLayoutComponent,
     LoginComponent,
     RecoveryComponent,
+    RegisterComponent,
   ],
   exports: [
     AuthLayoutComponent,
