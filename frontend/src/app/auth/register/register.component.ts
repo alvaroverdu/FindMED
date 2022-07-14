@@ -63,6 +63,7 @@ export class RegisterComponent implements OnInit {
   campoValido( campo: string) {
     return this.registerForm.get(campo).valid || !this.formSubmint;
   }
+  
 
 
 }

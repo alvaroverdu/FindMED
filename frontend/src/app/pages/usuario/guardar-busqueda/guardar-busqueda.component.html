@@ -1,7 +1,7 @@
 <div class="row justify-content-center" style="margin-top: -30rem;">
     <h1 style="color: #5da0a2;">Tus enfermedades guardadas</h1>
 </div>
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center" *ngIf="this.mostrarEnfermedades.length!=0">
     <div class="card mb-12 border-0">
         <h5 class="card-title" style="color: #5da0a2;"></h5>
             <div class="table-responsive">
@@ -23,3 +23,11 @@
             </div>
     </div>
 </div>
+
+<div class="row d-flex justify-content-center" *ngIf="this.mostrarEnfermedades.length==0">
+    <div class="card mb-12 border-0">
+        <h5 class="card-title" style="color: #5da0a2;"></h5>
+        <h3 style="color: #93af56;">Aún no has guardado ninguna enfermedad en favoritos. Prueba a hacerlo para tener disponible la información cuando la necesites.</h3>
+    </div>
+</div>
+
