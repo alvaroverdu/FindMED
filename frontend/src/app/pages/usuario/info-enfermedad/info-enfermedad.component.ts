@@ -9,6 +9,7 @@ import { Sintoma } from 'src/app/models/sintoma.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Usuario } from 'src/app/models/usuario.model';
+import { UsuariosComponent } from '../../admin/usuarios/usuarios.component';
 
 @Component({
   selector: 'app-info-enfermedad',
@@ -79,6 +80,32 @@ export class InfoEnfermedadComponent implements OnInit {
   });
  }
 
+ quitarFav(){
+  console.log('Funciona');
+  console.log(this.usuarioService.uid);
+  this.usuarioService.cargarUsuario(this.usuarioService.uid).subscribe(res => {
+    let usuario = new Usuario (res['usuarios'].uid,res['usuarios'].rol,res['usuarios'].nombre, res['usuarios'].email, res['usuarios'].edad,res['usuarios'].ubicacion,res['usuarios'].enfermedades,res['usuarios'].alta,res['usuarios'].activo);
+    usuario.enfermedades.forEach((enfermedad,index) => {
+      console.log(this.enfermedad.nombre);
+      if(enfermedad.nombre == this.enfermedad.nombre){
+      usuario.enfermedades.splice(index,1);
+      }
+    });
+    console.log('Usuario',usuario.enfermedades);
+    this.usuarioService.actualizarUsuario(this.usuarioService.uid,usuario).subscribe(res => {
+      console.log(res);
+      Swal.fire({icon: 'success', title: 'Éxito', text: 'Se ha quitado de favoritos',});
+    });
+  });
+ }
+
+
+esFavorito(){
+  if(this.usuarioService.enfermedades.find(enfermedad => enfermedad.nombre == this.enfermedad.nombre)){
+    return true;
+  }
+  return false;
+}
 
 
 

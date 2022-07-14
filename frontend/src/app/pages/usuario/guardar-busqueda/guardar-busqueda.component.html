@@ -1,1 +1,25 @@
-<p>guardar-busqueda works!</p>
+<div class="row justify-content-center" style="margin-top: -30rem;">
+    <h1 style="color: #5da0a2;">Tus enfermedades guardadas</h1>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="card mb-12 border-0">
+        <h5 class="card-title" style="color: #5da0a2;"></h5>
+            <div class="table-responsive">
+                <table id="" class="table table-striped table-bordered">
+                    <thead>
+                        <tr style="background-color:#5da0a2; color:white;">
+                            <th>Enfermedad</th>
+                            <th>Sintomas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let enfermedad of mostrarEnfermedades">
+                            <td class="micursor" style="font-weight: bold;">{{enfermedad.nombre}}</td>
+                            <td [routerLink]="" class="micursor">{{mostrarSintomas(enfermedad.sintomas)}}</td>
+                            <td><button class="btn btn-success btn" (click)="irAlaEnfermedad(enfermedad.uid);"><i class="fa fa-plus"></i>   Información</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
