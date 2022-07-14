@@ -36,8 +36,6 @@ export class MainpageComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.cargarSintomas();
-    this.cargarEnfermedades();
     this.buscado=false;
 
   }
@@ -71,32 +69,6 @@ export class MainpageComponent implements OnInit {
 
   }
 
-  cargarSintomas() {
-    // cargamos todos los síntomas
-    this.sintomaService.cargarSintomas(0, '', 'todos')
-      .subscribe(res => {
-        this.sintomas = res['sintomas'];
-        console.log(res['sintomas']);
-      });
-  }
-
-  cargarEnfermedades() {
-    // cargamos todos las enfermedades
-    this.enfermedadService.cargarEnfermedades(0, '','todos')
-      .subscribe( res => {
-        this.enfermedades = res['enfermedades'];
-        console.log(this.enfermedades);
-      });
-  }
-  
-  mostrarPosiblesEnfermedades(){
-    let enfermedadString = '';
-    this.listaenfermedadesposibles.forEach(enfermedad => {
-      enfermedadString += enfermedad.nombre + ', ';
-    });
-    return enfermedadString.substring(0, enfermedadString.length - 2);
-    
-  }
 
   comprobarEnfermedades(){
     if(this.listaenfermedadesposibles.length !== 0){
