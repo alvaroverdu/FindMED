@@ -20,6 +20,7 @@ export class InfoEnfermedadComponent implements OnInit {
 
   public enfermedad: Enfermedad;
   public uidEnfermedad: string = '';
+  public anyadido: boolean = false;
 
   public cargando: boolean = false;
 
@@ -68,16 +69,20 @@ export class InfoEnfermedadComponent implements OnInit {
  anyadirFav(){
   console.log('Funciona');
   console.log(this.usuarioService.uid);
-  this.usuarioService.cargarUsuario(this.usuarioService.uid).subscribe(res => {
-    let usuario = new Usuario (res['usuarios'].uid,res['usuarios'].rol,res['usuarios'].nombre, res['usuarios'].email, res['usuarios'].edad,res['usuarios'].ubicacion,res['usuarios'].enfermedades,res['usuarios'].alta,res['usuarios'].activo);
-    usuario.enfermedades.push(this.enfermedad);
-    console.log('Enfermedad',this.enfermedad);
-    console.log('Usuario',usuario.enfermedades);
-    this.usuarioService.actualizarUsuario(this.usuarioService.uid,usuario).subscribe(res => {
-      console.log(res);
-      Swal.fire({icon: 'success', title: 'Éxito', text: 'Se ha añadido a favoritos',});
+  console.log(this.anyadido);
+  if(this.anyadido===false){
+    this.usuarioService.cargarUsuario(this.usuarioService.uid).subscribe(res => {
+      let usuario = new Usuario (res['usuarios'].uid,res['usuarios'].rol,res['usuarios'].nombre, res['usuarios'].email, res['usuarios'].edad,res['usuarios'].ubicacion,res['usuarios'].enfermedades,res['usuarios'].alta,res['usuarios'].activo);
+      usuario.enfermedades.push(this.enfermedad);
+      this.usuarioService.actualizarUsuario(this.usuarioService.uid,usuario).subscribe(res => {
+        console.log(res);
+        Swal.fire({icon: 'success', title: 'Éxito', text: 'Se ha añadido a favoritos',});
+      });
+      this.anyadido = true;
     });
-  });
+  }else{
+    Swal.fire({icon: 'error', title: 'Oops...', text: 'Ya está en favoritos',});
+  } 
  }
 
  quitarFav(){

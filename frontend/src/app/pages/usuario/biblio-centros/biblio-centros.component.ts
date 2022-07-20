@@ -52,6 +52,7 @@ export class BiblioCentrosComponent implements OnInit {
   }
 
   buscarProvinciaIgual(){
+    this.centrosFiltrados = [];
     this.centros.forEach(centro => {
       if(this.centroForm.value.provincias === centro.ubicacion){
         this.centrosFiltrados.push(centro);

@@ -82,7 +82,6 @@ export class PerfilComponent implements OnInit {
     this.datosForm.get('nombre').setValue(this.usuarioService.nombre);
     this.datosForm.get('email').setValue(this.usuarioService.email);
     this.datosForm.get('edad').setValue(this.usuarioService.edad);
-    this.datosForm.get('ubicacion').setValue(this.usuarioService.ubicacion);
     this.datosForm.markAsPristine();
   }
 

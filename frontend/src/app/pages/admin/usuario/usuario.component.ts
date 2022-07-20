@@ -28,7 +28,6 @@ export class UsuarioComponent implements OnInit {
     nombre: ['', Validators.required ],
     password: ['', Validators.required ],
     edad: ['', Validators.required ],
-    ubicacion: ['', Validators.required ],
     rol: ['ROL_USUARIO', Validators.required ],
     activo: [true, Validators.required ],
   });
@@ -117,7 +116,7 @@ export class UsuarioComponent implements OnInit {
   }
   
 
-  enviar(): void {
+   enviar(): void {
     this.formSubmited = true;
     if (this.datosForm.invalid) { return; }
     // Diferenciar entre dar de alta uno nuevo o actualizar uno que ya existe
@@ -146,7 +145,8 @@ export class UsuarioComponent implements OnInit {
         });
     }
     
-  }
+  } 
+
 
   cambiarPassword(){
     // ponemos el mismo valor en los tres campos
